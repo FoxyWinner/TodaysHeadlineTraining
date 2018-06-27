@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
@@ -75,5 +74,8 @@ public class MainActivity extends AppCompatActivity
         mpager.setAdapter(mainActivityViewPagerAdapter);
 
     }
+
+
+
 
 }
