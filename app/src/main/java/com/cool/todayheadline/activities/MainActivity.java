@@ -11,6 +11,8 @@ import android.view.Window;
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
 import com.cool.todayheadline.extend.NoSlidingViewPaper;
+import com.cool.todayheadline.fragments.FavoriteFragment;
+import com.cool.todayheadline.fragments.HomeFragment;
 import com.cool.todayheadline.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -87,8 +89,8 @@ public class MainActivity extends AppCompatActivity
         mainActivityViewPagerAdapter = new MainActivityViewPagerAdapter(getSupportFragmentManager());
 
 //        为Adapter添加Fragment
-//        mainActivityViewPagerAdapter.addFragment(new HomeFragment());
-//        mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
+        mainActivityViewPagerAdapter.addFragment(new HomeFragment());
+        mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
         mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
 
