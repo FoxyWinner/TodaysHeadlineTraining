@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
 import com.cool.todayheadline.extend.NoSlidingViewPaper;
+import com.cool.todayheadline.utils.UIHelper;
 
 public class MainActivity extends AppCompatActivity
 {

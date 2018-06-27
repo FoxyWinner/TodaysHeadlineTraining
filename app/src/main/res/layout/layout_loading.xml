@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_loading_dialog_shape"
+    android:padding="40dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/view_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="PacmanIndicator"
+
+            />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/id_tv_loading_dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="loading..."
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            />
+</GridLayout>
