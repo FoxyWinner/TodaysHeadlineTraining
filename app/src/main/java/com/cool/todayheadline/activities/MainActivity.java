@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
                 case R.id.navigation_notifications:
                     mpager.setCurrentItem(2);
                     return true;
+
             }
             return false;
         }
