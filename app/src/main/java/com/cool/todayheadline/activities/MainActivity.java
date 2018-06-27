@@ -3,8 +3,11 @@ package com.cool.todayheadline.activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
@@ -46,6 +49,17 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_welcome);
+
+        ActionBar actionBar=getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.hide();
+        }
+
+
         setContentView(R.layout.activity_main);
 
         findView();
@@ -63,6 +77,10 @@ public class MainActivity extends AppCompatActivity
 
     public void init()
     {
+        //将bar隐藏
+
+
+
         //为底部导航栏添加监听事件
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -73,6 +91,8 @@ public class MainActivity extends AppCompatActivity
 //        mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
 //        mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
+
+
 
     }
 

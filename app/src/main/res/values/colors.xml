@@ -3,7 +3,7 @@
     <color name="colorPrimary">#FF1A19</color>
     <color name="iconPressed">#FF1A19</color>
 
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="transparent">#00ffffff</color>
