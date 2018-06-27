@@ -7,16 +7,17 @@ import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.adapters.ImageAdapter;
 
 
-public class PererencesActivity extends AppCompatActivity {
+public class PererencesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
-    GridView gridView;
-    ImageAdapter adapter;
+    private GridView    gridView;
+    private ImageAdapter    adapter;
 
 
 
@@ -25,16 +26,12 @@ public class PererencesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View view= this.getLayoutInflater().inflate((R.layout.activity_pererences), null);
-
-        GridView gridView = view.findViewById(R.id.gridView);
-
+        setContentView(R.layout.activity_pererences);
 
         gridView =(GridView) findViewById(R.id.gridView);
         adapter =new ImageAdapter(this);
         gridView.setAdapter(adapter);
-
-
+        gridView.setOnItemClickListener(PererencesActivity.this);
 
 
         ActionBar actionBar=getSupportActionBar();
@@ -47,16 +44,23 @@ public class PererencesActivity extends AppCompatActivity {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getHome();
+          //  getHome();
             super.handleMessage(msg);
         }
     };
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-    public void getHome(){
-        Intent intent = new Intent(PererencesActivity.this, MainActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(PererencesActivity.this, MainActivity.class);
+            startActivity(intent);
         finish();
     }
+
+//    public void getHome(){
+//        Intent intent = new Intent(PererencesActivity.this, MainActivity.class);
+//        startActivity(intent);
+//
+//    }
 
 
 

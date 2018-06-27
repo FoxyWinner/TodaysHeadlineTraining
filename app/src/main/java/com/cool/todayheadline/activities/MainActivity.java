@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 //        为Adapter添加Fragment
         mainActivityViewPagerAdapter.addFragment(new HomeFragment());
         mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
-        mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
+       mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
 
 

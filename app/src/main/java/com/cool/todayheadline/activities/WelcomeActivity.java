@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
     };
 
     public void getHome(){
-        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+        Intent intent = new Intent(WelcomeActivity.this, PererencesActivity.class);
         startActivity(intent);
         finish();
     }
