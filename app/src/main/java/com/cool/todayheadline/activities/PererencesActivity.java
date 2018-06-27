@@ -30,7 +30,7 @@ public class PererencesActivity extends AppCompatActivity {
         GridView gridView = view.findViewById(R.id.gridView);
 
 
-        gridView =(GridView) findViewById(R.id.gradview);
+        gridView =(GridView) findViewById(R.id.gridView);
         adapter =new ImageAdapter(this);
         gridView.setAdapter(adapter);
 
