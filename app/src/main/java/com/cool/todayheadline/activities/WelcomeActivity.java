@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
-import android.view.WindowManager;
 
 import com.cool.todayheadline.R;
 
@@ -25,7 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        handler.sendEmptyMessageDelayed(0,5000);
+        handler.sendEmptyMessageDelayed(0,3000);
     }
     private Handler handler = new Handler() {
         @Override

@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/bgColor"
+              android:paddingTop="20dp" >
+
+    <RelativeLayout
+        android:id="@+id/re_myinfo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:paddingBottom="8dp"
+        android:background="@drawable/button_bg_selector"
+        android:paddingTop="8dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/iv_userphoto"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/default_useravatar" />
+
+        <LinearLayout
+            android:id="@+id/ll_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@id/iv_userphoto"
+            android:orientation="horizontal" >
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_userphoto"
+            android:layout_centerHorizontal="true"
+            android:text="点击进行登陆"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_greeting"
+            android:layout_alignTop="@+id/ll_name"
+            android:text="未登录"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bt_callus"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_bg_selector"
+        android:text="联系我们"
+        android:textSize="17sp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableRight="@mipmap/right" />
+
+    <Button
+        android:id="@+id/bt_aboutus"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/button_bg_selector"
+        android:text="关于我们"
+        android:textSize="17sp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableRight="@mipmap/right"/>
+
+
+    <Button
+        android:id="@+id/bt_opinion"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/button_bg_selector"
+        android:text="意见反馈"
+        android:textSize="17sp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableRight="@mipmap/right"/>
+
+    <Button
+        android:id="@+id/bt_resetlogin"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/button_bg_selector"
+        android:layout_marginTop="10dp"
+        android:text="退出登录"
+        android:textSize="17sp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableRight="@mipmap/right" />
+
+</LinearLayout>

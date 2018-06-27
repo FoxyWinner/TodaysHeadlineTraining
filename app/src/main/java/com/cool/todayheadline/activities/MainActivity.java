@@ -7,12 +7,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.Window;
-import android.view.WindowManager;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
 import com.cool.todayheadline.extend.NoSlidingViewPaper;
-import com.cool.todayheadline.utils.UIHelper;
+import com.cool.todayheadline.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -89,12 +88,13 @@ public class MainActivity extends AppCompatActivity
 //        为Adapter添加Fragment
 //        mainActivityViewPagerAdapter.addFragment(new HomeFragment());
 //        mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
-//        mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
+        mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
 
 
 
     }
+
 
 
 

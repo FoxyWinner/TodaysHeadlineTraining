@@ -8,4 +8,8 @@
 
     <color name="transparent">#00ffffff</color>
     <color name="loading_bg">#92000000</color>
+
+    <color name="textColor">#FFFFFF</color>
+    <color name="bgColor">#EEEEF3</color>
+
 </resources>
