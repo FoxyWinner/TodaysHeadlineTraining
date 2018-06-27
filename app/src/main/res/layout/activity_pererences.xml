@@ -9,21 +9,22 @@
 
 
     <TextView
-        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/perference_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="20sp" />
 
     <GridView
+        android:layout_gravity="center_vertical"
         android:id="@+id/gridView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:numColumns="3"
         android:columnWidth="50dp"
-        android:layout_below="@+id/MainActivityrlTwo"
-        android:layout_marginTop="5dp"
+        android:verticalSpacing="20dp"
+        android:layout_marginTop="40dp"
         />
 
 </LinearLayout>
