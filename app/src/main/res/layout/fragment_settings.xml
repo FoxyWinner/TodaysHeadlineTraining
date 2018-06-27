@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:clickable="true"
         android:paddingBottom="8dp"
-
+        android:background="@drawable/button_bg_selector"
         android:paddingTop="8dp"
 
         >
@@ -64,7 +64,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        
+        android:background="@drawable/button_bg_selector"
         android:text="联系我们"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
@@ -77,7 +77,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        
+        android:background="@drawable/button_bg_selector"
         android:text="关于我们"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
@@ -91,7 +91,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        
+        android:background="@drawable/button_bg_selector"
         android:text="意见反馈"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
@@ -103,7 +103,7 @@
         android:id="@+id/bt_resetlogin"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        
+        android:background="@drawable/button_bg_selector"
         android:layout_marginTop="10dp"
         android:text="退出登录"
         android:textSize="17sp"
