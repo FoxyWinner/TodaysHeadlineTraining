@@ -1,6 +1,10 @@
 package com.cool.todayheadline.fragments;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.activities.NewsDetailActivity;
 import com.cool.todayheadline.fragments.HomeFragment.OnListFragmentInteractionListener;
 import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.vo.NewsItem;
@@ -16,13 +21,16 @@ import java.util.List;
 
 public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsItemRecyclerViewAdapter.ViewHolder>
 {
+    private static String PARAM_URL = "NEWS_DETAIL_URL";
 
     private final List<NewsItem> mValues;
     private final OnListFragmentInteractionListener mListener;
     private static final String TAG = "MyNewsItemRecyclerViewA";
+    private final Context mActivityContext;
 
-    public MyNewsItemRecyclerViewAdapter(List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
+    public MyNewsItemRecyclerViewAdapter(Context context,List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
     {
+        mActivityContext = context;
         mValues = newsItemList;
         mListener = listener;
     }
@@ -62,12 +70,14 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             @Override
             public void onClick(View v)
             {
-                if (null != mListener)
-                {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
+                Log.d(TAG, "onClick: 新闻条目"+holder.mItem.getTitle());
+                Intent intent = new Intent();
+                Bundle bundle=new Bundle();
+                intent.setClass(mActivityContext, NewsDetailActivity.class);
+                bundle.putString(PARAM_URL, holder.mItem.getUrl());
+
+                intent.putExtras(bundle);
+                mActivityContext.startActivity(intent);
             }
         });
     }
@@ -77,6 +87,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     {
         return mValues.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {

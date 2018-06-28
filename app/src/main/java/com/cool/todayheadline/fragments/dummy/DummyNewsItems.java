@@ -45,7 +45,7 @@ public class DummyNewsItems
     private static NewsItem createDummyItem(int position)
     {
         NewsItem newsItem = new NewsItem(position+"","社会"+position,"http://06.imgmini.eastday.com/mobile/20180627/20180627094810_268f4f177b506235815e72ce99add15d_1_mwpm_03200403.jpg",
-                "新闻"+position,"假人工厂","2018-06-27 09:46");
+                "新闻"+position,"假人工厂","2018-06-27 09:46","http://mini.eastday.com/mobile/180628091321571.html");
         return newsItem;
     }
 

@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment
             recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(DummyNewsItems.ITEMS, mListener));
+            recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(getActivity(),DummyNewsItems.ITEMS, mListener));
         }
         return view;
     }
