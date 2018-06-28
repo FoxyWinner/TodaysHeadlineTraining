@@ -18,9 +18,9 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     private final List<NewsItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyNewsItemRecyclerViewAdapter(List<NewsItem> items, OnListFragmentInteractionListener listener)
+    public MyNewsItemRecyclerViewAdapter(List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
     {
-        mValues = items;
+        mValues = newsItemList;
         mListener = listener;
     }
 
