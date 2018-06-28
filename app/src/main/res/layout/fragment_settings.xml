@@ -6,6 +6,7 @@
               android:paddingTop="20dp" >
 
     <RelativeLayout
+
         android:id="@+id/re_myinfo"
         android:layout_width="match_parent"
         android:layout_height="80dp"
