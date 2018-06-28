@@ -22,7 +22,7 @@ public class PererencesActivity extends AppCompatActivity implements AdapterView
     private ImageAdapter    adapter;
     FavoriteFragment favoriteFragment = new FavoriteFragment();
 
-    private String[] names = {"社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
+    private String[] names = {"shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

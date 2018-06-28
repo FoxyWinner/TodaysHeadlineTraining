@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_newsitem_list, container, false);
+        String per = getActivity().getIntent().getStringExtra("per");
 
         // Set the adapter
         if (view instanceof RecyclerView)
@@ -78,10 +79,10 @@ public class HomeFragment extends Fragment
 
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-
-            String[] url={"http://v.juhe.cn/toutiao/index?type=shehui&key=5465c4c5d60f72c3d756a9f1a9b8437d"};
+            String url="http://v.juhe.cn/toutiao/index?type="+per+"&key=5465c4c5d60f72c3d756a9f1a9b8437d";
+            String[] urls={url};
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
-            new DownloadTask(recyclerView,mListener,getActivity()).execute(url);
+            new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
             //new UIHelper().hideDialogForLoading();
             //recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(getActivity(),newsItemList, mListener));
         }
