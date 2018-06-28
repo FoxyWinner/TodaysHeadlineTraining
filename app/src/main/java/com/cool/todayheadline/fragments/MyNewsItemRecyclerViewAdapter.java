@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.fragments.HomeFragment.OnListFragmentInteractionListener;
+import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.vo.NewsItem;
 
 import java.util.List;
@@ -41,7 +42,8 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         holder.mAuthorDateView.setText(mValues.get(position).getAuthor()+"\n"+mValues.get(position).getDate());
 
         //图片加载
-//        new DownloadImageTask(mImageView).execute(getIntent().getStringExtra("QRCode"));
+        new DownloadImageTask(holder.mImageView).execute(mValues.get(position).getPic_url());
+
         holder.mView.setOnClickListener(new View.OnClickListener()
         {
             @Override
