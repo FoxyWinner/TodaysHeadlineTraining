@@ -22,8 +22,7 @@ public class UIHelper
 	/** 加载数据对话框 */
 	private static Dialog mLoadingDialog;
 	//单例模式
-	
-	
+
 	/**
 	 * 显示加载对话框
 	 * @param context 上下文
@@ -50,4 +49,18 @@ public class UIHelper
 		}
 	}
 
+	public static boolean isShowing()
+	{
+		//mLoadingDialog若=null直接返回false了
+		if(mLoadingDialog == null)
+			return false;
+		else
+		{
+			if (mLoadingDialog.isShowing())
+			{
+				return true;
+			}
+			return false;
+		}
+	}
 }
