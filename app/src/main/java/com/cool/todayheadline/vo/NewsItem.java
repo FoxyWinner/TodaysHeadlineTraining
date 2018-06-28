@@ -8,9 +8,9 @@ public class NewsItem
     private String title;
     private String author;
     private String date;
-
+    private String url;
     public NewsItem(){}
-    public NewsItem(String id, String category, String pic_url, String title, String author, String date)
+    public NewsItem(String id, String category, String pic_url, String title, String author, String date, String url)
     {
         this.id = id;
         this.category = category;
@@ -18,6 +18,7 @@ public class NewsItem
         this.title = title;
         this.author = author;
         this.date = date;
+        this.url = url;
     }
 
     public String getId()
@@ -78,5 +79,15 @@ public class NewsItem
     public void setDate(String date)
     {
         this.date = date;
+    }
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    public void setUrl(String url)
+    {
+        this.url = url;
     }
 }
