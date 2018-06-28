@@ -3,9 +3,11 @@ package com.cool.todayheadline.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 
@@ -14,6 +16,7 @@ import com.cool.todayheadline.R;
  * Use the {@link FavoriteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class FavoriteFragment extends Fragment
 {
     // TODO: Rename parameter arguments, choose names that match
@@ -24,6 +27,8 @@ public class FavoriteFragment extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
 
 
     public FavoriteFragment()
@@ -40,7 +45,7 @@ public class FavoriteFragment extends Fragment
      * @return A new instance of fragment FavoriteFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavoriteFragment newInstance(String param1, String param2)
+    public static FavoriteFragment newInstance(String param1,String param2)
     {
         FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
@@ -56,8 +61,8 @@ public class FavoriteFragment extends Fragment
         super.onCreate(savedInstanceState);
         if (getArguments() != null)
         {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString("perferences");
+           // mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -65,6 +70,23 @@ public class FavoriteFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+
+       // View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_favorite, null);
+        View view = inflater.inflate(R.layout.fragment_favorite, container, false);
+        TextView textView = (TextView)view.findViewById(R.id.favorite_id);
+
+
+
+        String per = getActivity().getIntent().getStringExtra("per");
+
+        // per就是选择的偏好
+        Log.e("选择的偏好是",per);
+
+
+
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite, container, false);
     }

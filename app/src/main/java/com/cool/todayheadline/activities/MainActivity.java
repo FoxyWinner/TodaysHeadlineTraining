@@ -58,8 +58,16 @@ public class MainActivity extends AppCompatActivity
             actionBar.hide();
         }
 
-
         setContentView(R.layout.activity_main);
+
+        String perf = getIntent().getStringExtra("per");
+
+        // Log.e("Main!!!!!!",perf);
+        FavoriteFragment favoriteFragment = new FavoriteFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("per",perf);
+        favoriteFragment.setArguments(bundle);
+
 
         findView();
 
