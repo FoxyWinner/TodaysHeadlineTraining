@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import java.io.InputStream;
 
-//执行ex：new DownloadImageTask(QRImg).execute(getIntent().getStringExtra("QRCode"));
+//执行ex：new DownloadImageTask(QRImg).execute(URL);
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 {

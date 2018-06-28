@@ -9,6 +9,7 @@ public class NewsItem
     private String author;
     private String date;
 
+    public NewsItem(){}
     public NewsItem(String id, String category, String pic_url, String title, String author, String date)
     {
         this.id = id;
