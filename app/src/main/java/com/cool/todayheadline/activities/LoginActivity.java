@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         });
+
         backButton = (ImageButton)findViewById(R.id.back_btn);
 
         backButton.setOnClickListener(new OnClickListener() {
