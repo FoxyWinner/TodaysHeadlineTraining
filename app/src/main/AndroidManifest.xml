@@ -28,9 +28,10 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"/>
-        <activity android:name=".activities.PererencesActivity"/>
 
         <activity android:name=".activities.NewsDetailActivity">
+        </activity>
+        <activity android:name=".activities.PreferenceActivity">
         </activity>
         <activity android:name=".activities.LoginActivity">
         </activity>

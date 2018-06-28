@@ -41,7 +41,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        new UIHelper().showDialogForLoading(activity, "正在加载...", true);
+//        new UIHelper().showDialogForLoading(activity, "正在加载...", true);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
             newsItem=AssemblerUtil.transform(s,i);
             newsItemList.add(newsItem);
         }
-        new UIHelper().hideDialogForLoading();
+//        new UIHelper().hideDialogForLoading();
         recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,newsItemList, mListener));
     }
 }

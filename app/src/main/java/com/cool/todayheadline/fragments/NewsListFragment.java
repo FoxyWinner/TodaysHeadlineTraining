@@ -1,5 +1,5 @@
-package com.cool.todayheadline.fragments;
-
+package com.cool.todayheadline.fragments;//package com.cool.todayheadline.fragments;
+//
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,13 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.fragments.dummy.DummyNewsItems;
 import com.cool.todayheadline.utils.Const;
-import com.cool.todayheadline.utils.DownloadTask;
-import com.cool.todayheadline.utils.Info;
 import com.cool.todayheadline.vo.NewsItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -25,28 +21,26 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class HomeFragment extends Fragment
+public class NewsListFragment extends Fragment
 {
 
     // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
     private OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public HomeFragment()
+    public NewsListFragment()
     {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static HomeFragment newInstance(int columnCount)
+
+    public static NewsListFragment newInstance(String preference)
     {
-        HomeFragment fragment = new HomeFragment();
+        NewsListFragment fragment = new NewsListFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(Const.USER_PREFERENCE, preference);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,9 +50,6 @@ public class HomeFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) //没传过数据来
-        {
-        }
     }
 
     @Override
@@ -66,7 +57,6 @@ public class HomeFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_newsitem_list, container, false);
-        String userPreference = getActivity().getIntent().getStringExtra(Const.USER_PREFERENCE);
 
         // Set the adapter
         if (view instanceof RecyclerView)
@@ -79,11 +69,17 @@ public class HomeFragment extends Fragment
 
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            String url= Info.path_queryNewsItems("");
-//            String url="http://v.juhe.cn/toutiao/index?type="+userPreference+"&key=5465c4c5d60f72c3d756a9f1a9b8437d";
-            String[] urls={url};
-            List<NewsItem> newsItemList=new ArrayList<NewsItem>();
-            new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
+            //判断是否有偏好，如果没有则加载全部条目，如果有，则剔除；
+            if(getArguments()!=null)
+            {
+                //将items筛选
+
+
+            }else
+            {
+                recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(getActivity(),DummyNewsItems.ITEMS, (HomeFragment.OnListFragmentInteractionListener) mListener));
+
+            }
         }
         return view;
     }
@@ -93,6 +89,15 @@ public class HomeFragment extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
+//        if (context instanceof OnListFragmentInteractionListener)
+//        {
+//            mListener = (OnListFragmentInteractionListener) context;
+//        }
+//        else
+//        {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnListFragmentInteractionListener");
+//        }
     }
 
     @Override
