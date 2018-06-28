@@ -7,7 +7,7 @@ import com.cool.todayheadline.vo.NewsItem;
 public class AssemblerUtil {
 
     public static NewsItem transform(Sys sys,int i){
-        NewsItem newsItem=new NewsItem();
+        NewsItem newsItem = new NewsItem();
         Data data=sys.getResult().getData()[0];
         newsItem.setId(i+"");
         newsItem.setTitle(data.getTitle());
