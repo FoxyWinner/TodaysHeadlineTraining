@@ -73,7 +73,6 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     protected void onPostExecute(Sys s) {
         super.onPostExecute(s);
         int total=s.getResult().getData().length;
-        Log.e(TAG, "onPostExecute: "+total );
         List<NewsItem> newsItemList=new ArrayList<NewsItem>();
         for(int i=0;i<total;i++){
             NewsItem newsItem=new NewsItem();
