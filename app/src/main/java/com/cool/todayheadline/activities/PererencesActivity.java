@@ -1,5 +1,6 @@
 package com.cool.todayheadline.activities;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,16 +13,16 @@ import android.widget.GridView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.adapters.ImageAdapter;
+import com.cool.todayheadline.fragments.FavoriteFragment;
 
 
 public class PererencesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private GridView    gridView;
     private ImageAdapter    adapter;
+    FavoriteFragment favoriteFragment = new FavoriteFragment();
 
-
-
-
+    private String[] names = {"社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,13 @@ public class PererencesActivity extends AppCompatActivity implements AdapterView
             actionBar.hide();
         }
         handler.sendEmptyMessageDelayed(0,5000);
+
+
+
+
+
     }
+
 
     private Handler handler = new Handler() {
         @Override
@@ -51,16 +58,15 @@ public class PererencesActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            Intent intent = new Intent(PererencesActivity.this, MainActivity.class);
+
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("per",names[position]);
+
+       // Log.e("!!!!!",names[position]);
             startActivity(intent);
         finish();
     }
 
-//    public void getHome(){
-//        Intent intent = new Intent(PererencesActivity.this, MainActivity.class);
-//        startActivity(intent);
-//
-//    }
 
 
 

@@ -20,7 +20,9 @@ public class ImageAdapter extends BaseAdapter {
 
     public ImageAdapter(Context context){
 
+
         this.context = context;
+
     }
     private Integer[] mPics  = {R.drawable.shehui_pic,R.drawable.guonei_pic,R.drawable.guoji_pic,
             R.drawable.yule_pic, R.drawable.tiyu_pic, R.drawable.junshi_pic, R.drawable.keji_pic ,
