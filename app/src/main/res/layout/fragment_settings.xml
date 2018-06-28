@@ -19,6 +19,8 @@
         >
 
         <ImageView
+            android:background="@drawable/image_bg"
+            android:padding="2dp"
             android:id="@+id/iv_userphoto"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -51,8 +53,9 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_greeting"
             android:layout_alignTop="@+id/ll_name"
+
+            android:layout_centerHorizontal="true"
             android:text="未登录"
             android:textColor="#353535"
             android:textSize="16sp" />
@@ -65,7 +68,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_bg_selector"
-        android:text="联系我们"
+        android:text="偏好设置"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
         android:paddingLeft="20dp"
@@ -78,7 +81,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@drawable/button_bg_selector"
-        android:text="关于我们"
+        android:text="清空缓存"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
         android:paddingLeft="20dp"
@@ -92,7 +95,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@drawable/button_bg_selector"
-        android:text="意见反馈"
+        android:text="新闻收藏夹"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
         android:paddingLeft="20dp"
@@ -105,7 +108,7 @@
         android:layout_height="50dp"
         android:background="@drawable/button_bg_selector"
         android:layout_marginTop="10dp"
-        android:text="退出登录"
+        android:text="关于我们"
         android:textSize="17sp"
         android:gravity="center_vertical|left"
         android:paddingLeft="20dp"

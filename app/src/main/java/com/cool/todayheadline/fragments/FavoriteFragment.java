@@ -26,9 +26,9 @@ public class FavoriteFragment extends Fragment
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    //private String mParam2;
+    private String mParam2;
 
-    private TextView textView;
+
 
 
     public FavoriteFragment()
@@ -41,15 +41,16 @@ public class FavoriteFragment extends Fragment
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param //param2 Parameter 2.
+     * @param param2 Parameter 2.
      * @return A new instance of fragment FavoriteFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavoriteFragment newInstance(String param1)
+    public static FavoriteFragment newInstance(String param1,String param2)
     {
         FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
-        args.putString("perferences", param1);
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
