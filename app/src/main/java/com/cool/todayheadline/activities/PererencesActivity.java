@@ -62,8 +62,8 @@ public class PererencesActivity extends AppCompatActivity implements AdapterView
         Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("per",names[position]);
 
-       // Log.e("!!!!!",names[position]);
-            startActivity(intent);
+        // Log.e("!!!!!",names[position]);
+        startActivity(intent);
         finish();
     }
 
