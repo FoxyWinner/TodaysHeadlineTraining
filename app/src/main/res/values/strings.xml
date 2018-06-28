@@ -22,4 +22,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">登录</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">用户名</string>
+    <string name="login_1">点击查看用户协议和隐私政策</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in">进入头条</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

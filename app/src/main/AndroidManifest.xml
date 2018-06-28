@@ -29,6 +29,8 @@
 
         <activity android:name=".activities.NewsDetailActivity">
         </activity>
+        <activity android:name=".activities.LoginActivity">
+        </activity>
     </application>
 
 </manifest>
