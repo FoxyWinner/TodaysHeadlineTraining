@@ -59,18 +59,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         setContentView(R.layout.activity_main);
-
-        String perf = getIntent().getStringExtra("per");
-
-        FavoriteFragment favoriteFragment = new FavoriteFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("per",perf);
-        favoriteFragment.setArguments(bundle);
-
         findView();
-
         init();
-
     }
 
     public void findView()
@@ -82,10 +72,8 @@ public class MainActivity extends AppCompatActivity
 
     public void init()
     {
-        //将bar隐藏
-
-
-
+        //设置预加载3个界面
+        mpager.setOffscreenPageLimit(3);
         //为底部导航栏添加监听事件
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 

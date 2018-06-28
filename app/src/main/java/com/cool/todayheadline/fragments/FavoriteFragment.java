@@ -80,7 +80,6 @@ public class FavoriteFragment extends Fragment
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
             String url= Info.path_queryNewsItems(userPreference);
-//            String url="http://v.juhe.cn/toutiao/index?type="+userPreference+"&key=5465c4c5d60f72c3d756a9f1a9b8437d";
             String[] urls={url};
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
             new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
