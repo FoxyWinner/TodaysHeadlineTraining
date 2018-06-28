@@ -12,7 +12,12 @@ import android.view.ViewGroup;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.fragments.dummy.DummyNewsItems;
+import com.cool.todayheadline.utils.DownloadTask;
+import com.cool.todayheadline.utils.UIHelper;
 import com.cool.todayheadline.vo.NewsItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -72,7 +77,13 @@ public class HomeFragment extends Fragment
             recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(getActivity(),DummyNewsItems.ITEMS, mListener));
+
+
+            String[] url={"http://v.juhe.cn/toutiao/index?type=shehui&key=5465c4c5d60f72c3d756a9f1a9b8437d"};
+            List<NewsItem> newsItemList=new ArrayList<NewsItem>();
+            new DownloadTask(recyclerView,mListener,getActivity()).execute(url);
+            //new UIHelper().hideDialogForLoading();
+            //recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(getActivity(),newsItemList, mListener));
         }
         return view;
     }

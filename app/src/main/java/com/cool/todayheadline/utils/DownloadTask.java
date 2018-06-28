@@ -1,11 +1,18 @@
 package com.cool.todayheadline.utils;
 
+import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.cool.todayheadline.bean.Sys;
+import com.cool.todayheadline.fragments.HomeFragment;
+import com.cool.todayheadline.fragments.MyNewsItemRecyclerViewAdapter;
 import com.cool.todayheadline.vo.NewsItem;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,14 +24,25 @@ import okhttp3.Response;
 
 public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
-    NewsItem newsItem[];
+    RecyclerView recyclerView;
+    HomeFragment.OnListFragmentInteractionListener mListener;
+    Activity activity;
 
     private static final String TAG = "DownloadTask";
 
-    public DownloadTask(NewsItem[] newsItem){
-        this.newsItem=newsItem;
+    public DownloadTask(RecyclerView recyclerView,
+                        HomeFragment.OnListFragmentInteractionListener mListener,
+                        Activity activity){
+        this.recyclerView=recyclerView;
+        this.mListener=mListener;
+        this.activity=activity;
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        new UIHelper().showDialogForLoading(activity, "正在加载...", true);
+    }
 
     @Override
     protected Sys doInBackground(String... strings) {
@@ -55,10 +73,14 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     protected void onPostExecute(Sys s) {
         super.onPostExecute(s);
         int total=s.getResult().getData().length;
-        NewsItem[] news=new NewsItem[total];
+        Log.e(TAG, "onPostExecute: "+total );
+        List<NewsItem> newsItemList=new ArrayList<NewsItem>();
         for(int i=0;i<total;i++){
-            news[i]=AssemblerUtil.transform(s,i);
+            NewsItem newsItem=new NewsItem();
+            newsItem=AssemblerUtil.transform(s,i);
+            newsItemList.add(newsItem);
         }
-        newsItem=news;
+        new UIHelper().hideDialogForLoading();
+        recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,newsItemList, mListener));
     }
 }
