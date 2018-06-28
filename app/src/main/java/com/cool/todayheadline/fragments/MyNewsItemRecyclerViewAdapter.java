@@ -19,6 +19,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
 
     private final List<NewsItem> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private static final String TAG = "MyNewsItemRecyclerViewA";
 
     public MyNewsItemRecyclerViewAdapter(List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
     {
@@ -35,7 +36,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position)
+    public void onBindViewHolder(final ViewHolder holder, final int position)
     {
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
@@ -43,6 +44,18 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
 
         //图片加载
         new DownloadImageTask(holder.mImageView).execute(mValues.get(position).getPic_url());
+
+        holder.mCancelButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                mValues.remove(position);
+                MyNewsItemRecyclerViewAdapter.this.notifyItemRemoved(position);
+                MyNewsItemRecyclerViewAdapter.this.notifyItemRangeChanged(0,MyNewsItemRecyclerViewAdapter.this.mValues.size());
+            }
+        });
+
 
         holder.mView.setOnClickListener(new View.OnClickListener()
         {
@@ -69,6 +82,8 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     {
         public final View mView;
         public final ImageView mImageView;
+        public final ImageView mCancelButton;
+
         public final TextView mTitleView;
         public final TextView mAuthorDateView;
         public NewsItem mItem;
@@ -80,6 +95,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
+            mCancelButton = (ImageView) view.findViewById(R.id.news_item_cancel_bt);
         }
 
         @Override
