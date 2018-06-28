@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FAFAD2"
+    android:background="#FFFFF0"
     tools:context=".activities.LoginActivity">
 
     <!-- Login progress -->
@@ -20,11 +20,40 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
+    <LinearLayout
+
+        android:orientation="vertical"
+
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+
+            android:id="@+id/back_btn"
+            android:layout_gravity="right"
+            android:src="@drawable/back"
+            android:layout_marginBottom="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="登录你的头条，精彩永不丢失"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+
+
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -33,23 +62,16 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:textColor="#6E6E6E"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="30dp"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
-                android:text="登录你的头条，精彩永不丢失"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edittext_bg"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
@@ -59,12 +81,16 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="40dp">
 
                 <EditText
                     android:id="@+id/password"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edittext_bg"
                     android:hint="@string/prompt_password"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
@@ -77,19 +103,62 @@
 
             <Button
                 android:id="@+id/email_sign_in_button"
+
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/login_btn"
                 android:text="@string/action_sign_in"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
             <TextView
-                android:textSize="10dp"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/login_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/login_1"
+                android:textSize="10dp" />
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:src="@drawable/wechat" />
+         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+             android:layout_marginRight="10dp"
+             android:clickable="true"
+
+             android:src="@drawable/qq" />
+
+            <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+
+                android:src="@drawable/weibo" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+
+            android:src="@drawable/duanxin" />
+
+
+    </LinearLayout>
 </LinearLayout>

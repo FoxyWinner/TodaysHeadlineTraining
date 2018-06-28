@@ -26,7 +26,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">用户名</string>
-    <string name="login_1">点击查看用户协议和隐私政策</string>
+    <string name="login_1">点击查看“用户协议”和“隐私政策”</string>
     <string name="prompt_password">密码</string>
     <string name="action_sign_in">进入头条</string>
     <string name="action_sign_in_short">Sign in</string>
