@@ -41,7 +41,10 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        new UIHelper().showDialogForLoading(activity, "正在加载...", true);
+        if(!new UIHelper().isShowing())
+        {
+            new UIHelper().showDialogForLoading(activity, "正在加载...", true);
+        }
     }
 
     @Override
@@ -75,7 +78,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
         int total=s.getResult().getData().length;
         List<NewsItem> newsItemList=new ArrayList<NewsItem>();
         for(int i=0;i<total;i++){
-            NewsItem newsItem=new NewsItem();
+            NewsItem newsItem;
             newsItem=AssemblerUtil.transform(s,i);
             newsItemList.add(newsItem);
         }

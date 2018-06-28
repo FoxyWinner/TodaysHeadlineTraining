@@ -13,6 +13,7 @@ import java.io.InputStream;
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 {
         ImageView bmImage;
+        private static final String TAG = "DownloadImageTask";
 
         public DownloadImageTask(ImageView bmImage)
         {
@@ -37,6 +38,10 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 
         protected void onPostExecute(Bitmap result)
         {
+                super.onPostExecute(result);
+                if (result == null || result.equals("")) {
+                        Log.w(TAG, "onPostExecute:进入result查询失败分支");
+                }
                 bmImage.setImageBitmap(result);
         }
 }

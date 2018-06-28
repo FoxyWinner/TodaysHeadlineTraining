@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,6 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             @Override
             public void onClick(View v)
             {
-                Log.d(TAG, "onClick: 新闻条目"+holder.mItem.getTitle());
                 Intent intent = new Intent();
                 Bundle bundle=new Bundle();
                 intent.setClass(mActivityContext, NewsDetailActivity.class);

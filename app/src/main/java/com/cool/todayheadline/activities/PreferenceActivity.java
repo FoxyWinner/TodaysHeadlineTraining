@@ -14,15 +14,17 @@ import android.widget.GridView;
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.adapters.ImageAdapter;
 import com.cool.todayheadline.fragments.FavoriteFragment;
+import com.cool.todayheadline.utils.Const;
 
 
-public class PererencesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class PreferenceActivity extends AppCompatActivity implements AdapterView.OnItemClickListener
+{
 
     private GridView    gridView;
     private ImageAdapter    adapter;
     FavoriteFragment favoriteFragment = new FavoriteFragment();
 
-    private String[] names = {"社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
+    private String[] names = {"shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class PererencesActivity extends AppCompatActivity implements AdapterView
         gridView =(GridView) findViewById(R.id.gridView);
         adapter =new ImageAdapter(this);
         gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(PererencesActivity.this);
+        gridView.setOnItemClickListener(PreferenceActivity.this);
 
 
         ActionBar actionBar=getSupportActionBar();
@@ -60,9 +62,9 @@ public class PererencesActivity extends AppCompatActivity implements AdapterView
 
 
         Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("per",names[position]);
 
-        // Log.e("!!!!!",names[position]);
+        intent.putExtra(Const.USER_PREFERENCE,names[position]);
+
         startActivity(intent);
         finish();
     }

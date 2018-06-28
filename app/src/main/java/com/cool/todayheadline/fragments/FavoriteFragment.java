@@ -1,15 +1,24 @@
 package com.cool.todayheadline.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.utils.Const;
+import com.cool.todayheadline.utils.DownloadTask;
+import com.cool.todayheadline.utils.Info;
+import com.cool.todayheadline.vo.NewsItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,38 +28,25 @@ import com.cool.todayheadline.R;
 
 public class FavoriteFragment extends Fragment
 {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-
-
-    public FavoriteFragment()
-    {
-        // Required empty public constructor
-    }
+    // TODO: Customize parameter argument names
+    private static final String ARG_COLUMN_COUNT = "column-count";
+    private HomeFragment.OnListFragmentInteractionListener mListener;
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavoriteFragment.
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
      */
-    // TODO: Rename and change types and number of parameters
-    public static FavoriteFragment newInstance(String param1,String param2)
+    public FavoriteFragment()
     {
-        FavoriteFragment fragment = new FavoriteFragment();
+    }
+
+    // TODO: Customize parameter initialization
+    @SuppressWarnings("unused")
+    public static HomeFragment newInstance(int columnCount)
+    {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,10 +55,9 @@ public class FavoriteFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null)
+
+        if (getArguments() != null) //没传过数据来
         {
-            mParam1 = getArguments().getString("perferences");
-           // mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -70,25 +65,44 @@ public class FavoriteFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        View view = inflater.inflate(R.layout.fragment_newsitem_list, container, false);
+        String userPreference = getActivity().getIntent().getStringExtra(Const.USER_PREFERENCE);
 
-       // View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_favorite, null);
-        View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        TextView textView = (TextView)view.findViewById(R.id.favorite_id);
+        // Set the adapter
+        if (view instanceof RecyclerView)
+        {
+            Context context = view.getContext();
 
+            RecyclerView recyclerView = (RecyclerView) view;
+            //设置分割线
+            recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        String per = getActivity().getIntent().getStringExtra("per");
-
-        // per就是选择的偏好
-        Log.e("选择的偏好是",per);
-
-
-
-
-
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+            String url= Info.path_queryNewsItems(userPreference);
+            String[] urls={url};
+            List<NewsItem> newsItemList=new ArrayList<NewsItem>();
+            new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
+        }
+        return view;
     }
 
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+//        mListener = null;
+    }
+
+    public interface OnListFragmentInteractionListener
+    {
+        void onListFragmentInteraction(NewsItem item);
+    }
 }
