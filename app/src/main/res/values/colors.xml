@@ -12,4 +12,7 @@
     <color name="textColor">#FFFFFF</color>
     <color name="bgColor">#EEEEF3</color>
 
+    <color name="author_tx_color">#87878a</color>
+
+
 </resources>

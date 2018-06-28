@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cool.todayheadline.R;
@@ -36,9 +37,11 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     public void onBindViewHolder(final ViewHolder holder, int position)
     {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getId());
-        holder.mContentView.setText(mValues.get(position).getTitle());
+        holder.mTitleView.setText(mValues.get(position).getTitle());
+        holder.mAuthorDateView.setText(mValues.get(position).getAuthor()+"\n"+mValues.get(position).getDate());
 
+        //图片加载
+//        new DownloadImageTask(mImageView).execute(getIntent().getStringExtra("QRCode"));
         holder.mView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -63,22 +66,30 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final ImageView mImageView;
+        public final TextView mTitleView;
+        public final TextView mAuthorDateView;
         public NewsItem mItem;
 
         public ViewHolder(View view)
         {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
+            mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
+            mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
         }
 
         @Override
         public String toString()
         {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return "ViewHolder{" +
+                    "mView=" + mView +
+                    ", mImageView=" + mImageView +
+                    ", mTitleView=" + mTitleView +
+                    ", mAuthorDateView=" + mAuthorDateView +
+                    ", mItem=" + mItem +
+                    '}';
         }
     }
 }

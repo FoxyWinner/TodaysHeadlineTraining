@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import java.io.InputStream;
 
 //执行ex：new DownloadImageTask(QRImg).execute(getIntent().getStringExtra("QRCode"));
+
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 {
         ImageView bmImage;
@@ -21,17 +22,17 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         protected Bitmap doInBackground(String... urls)
         {
                 String urldisplay = urls[0];
-                Bitmap mIcon11 = null;
+                Bitmap bitmap = null;
                 try
                 {
                         InputStream in = new java.net.URL(urldisplay).openStream();
-                        mIcon11 = BitmapFactory.decodeStream(in);
+                        bitmap = BitmapFactory.decodeStream(in);
                 } catch (Exception e)
                 {
                         Log.e("Error", e.getMessage());
                         e.printStackTrace();
                 }
-                return mIcon11;
+                return bitmap;
         }
 
         protected void onPostExecute(Bitmap result)
