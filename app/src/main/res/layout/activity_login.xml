@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FFFFF0"
+    android:background="#F9F9F9"
     tools:context=".activities.LoginActivity">
 
     <!-- Login progress -->
@@ -31,13 +31,14 @@
         <ImageButton
 
             android:id="@+id/back_btn"
+            android:layout_width="24dp"
+            android:layout_height="21dp"
             android:layout_gravity="right"
-            android:src="@drawable/back"
             android:layout_marginBottom="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/xx" />
 
         <TextView
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -62,30 +63,29 @@
             android:orientation="vertical">
 
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
-                    android:id="@+id/email"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/edittext_bg"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
+
+            <EditText
+                android:paddingLeft="8dip"
+                android:id="@+id/email"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/prompt_email"
 
-                android:layout_marginTop="40dp">
+
+                 />
+
+
+
+
 
                 <EditText
+                    android:paddingLeft="8dip"
+                    android:layout_marginTop="50dp"
                     android:id="@+id/password"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
@@ -99,7 +99,6 @@
                     android:maxLines="1"
                     android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/email_sign_in_button"
@@ -115,29 +114,42 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/login_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:text="@string/login_1"
+
                 android:textSize="10dp" />
+
+
+            <TextView
+                android:textColor="#5CACEE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="账号注册  |  密码登录"
+                android:textSize="15dp" />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:layout_marginTop="100dp"
-        android:gravity="center"
+
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
 
         <ImageView
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:clickable="true"
-            android:src="@drawable/wechat" />
+            android:src="@drawable/weixin" />
          <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -159,7 +171,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
 
-            android:src="@drawable/duanxin" />
+            android:src="@drawable/mail" />
 
 
     </LinearLayout>
