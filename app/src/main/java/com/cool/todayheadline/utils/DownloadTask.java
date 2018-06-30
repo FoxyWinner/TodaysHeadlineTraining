@@ -2,8 +2,10 @@ package com.cool.todayheadline.utils;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.cool.todayheadline.bean.Sys;
 import com.cool.todayheadline.fragments.HomeFragment;
@@ -19,7 +21,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * 用法：new DownloadTask(newsItemList).execute(urls);
+ * 用法：new DownloadTask(recyclerView,mListener,activity).execute(urls);
  */
 
 public class DownloadTask extends AsyncTask<String,Object,Sys>{
@@ -54,7 +56,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
 
         String url=(String)strings[0];
-        Sys sys=new Sys();
+        Sys sys=null;
         try{
             OkHttpClient client=new OkHttpClient();
             Request request=new Request.Builder()
@@ -62,13 +64,8 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                     .build();
             Response response=client.newCall(request).execute();
             String responseData=response.body().string();
-            Log.d(TAG, responseData);
             Gson g=new Gson();
             sys =g.fromJson(responseData,Sys.class);
-            while(true){
-                if(sys!=null)
-                    break;
-            }
 
         }catch (Exception e){
             e.printStackTrace();
@@ -79,14 +76,28 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     @Override
     protected void onPostExecute(Sys s) {
         super.onPostExecute(s);
-        int total=s.getResult().getData().length;
-        List<NewsItem> newsItemList=new ArrayList<NewsItem>();
-        for(int i=0;i<total;i++){
-            NewsItem newsItem;
-            newsItem=AssemblerUtil.transform(s,i);
-            newsItemList.add(newsItem);
+        if (s==null||"".equals(s.toString()))
+        {
+            Log.w("ContentFragment","进入result查询失败分支");
+            Snackbar sb = Snackbar.make(recyclerView, "连接服务器失败，无数据", Snackbar.LENGTH_LONG);
+            sb .setAction("确定", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
+            sb.show();
         }
-        new UIHelper().hideDialogForLoading();
-        recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,newsItemList, mListener));
+        else {
+            int total=s.getResult().getData().length;
+            List<NewsItem> newsItemList=new ArrayList<NewsItem>();
+            for(int i=0;i<total;i++){
+                NewsItem newsItem;
+                newsItem=AssemblerUtil.transform(s,i);
+                newsItemList.add(newsItem);
+            }
+            new UIHelper().hideDialogForLoading();
+            recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList, mListener));
+
+        }
     }
 }

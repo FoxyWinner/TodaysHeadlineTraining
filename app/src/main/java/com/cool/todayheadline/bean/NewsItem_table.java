@@ -1,32 +1,53 @@
-package com.cool.todayheadline.vo;
+package com.cool.todayheadline.bean;
 
-public class NewsItem
+import org.litepal.crud.LitePalSupport;
+
+public class NewsItem_table extends LitePalSupport
 {
-    private String id;
+    private int id;
+    private String id_String;
     private String category;
     private String pic_url;
     private String title;
     private String author;
     private String date;
     private String url;
-    public NewsItem(){}
-    public NewsItem(String id, String category, String pic_url, String title, String author, String date, String url)
-    {
-        this.id = id;
+    private String user;
+    public NewsItem_table(){}
+
+    public NewsItem_table(String id_String, String category, String pic_url, String title, String author, String date, String url, String user) {
+        this.id_String = id_String;
         this.category = category;
         this.pic_url = pic_url;
         this.title = title;
         this.author = author;
         this.date = date;
         this.url = url;
+        this.user = user;
     }
 
-    public String getId()
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getId_String() {
+        return id_String;
+    }
+
+    public void setId_String(String id_String) {
+        this.id_String = id_String;
+    }
+
+    public int getId()
     {
         return id;
     }
 
-    public void setId(String id)
+    public void setId(int id)
     {
         this.id = id;
     }
@@ -89,19 +110,5 @@ public class NewsItem
     public void setUrl(String url)
     {
         this.url = url;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "NewsItem{" +
-                "id='" + id + '\'' +
-                ", category='" + category + '\'' +
-                ", pic_url='" + pic_url + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", date='" + date + '\'' +
-                ", url='" + url + '\'' +
-                '}';
     }
 }

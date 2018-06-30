@@ -43,5 +43,6 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
                         Log.w(TAG, "onPostExecute:进入result查询失败分支");
                 }
                 bmImage.setImageBitmap(result);
+                bmImage.setTag(true);
         }
 }

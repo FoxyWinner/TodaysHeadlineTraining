@@ -10,11 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.LoginActivity;
-import com.cool.todayheadline.utils.Const;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +30,7 @@ public class SettingsFragment extends Fragment
     private static final String ARG_PARAM2 = "param2";
 
     private RelativeLayout relativeLayout;
+    private Button newsCollector;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -94,7 +93,14 @@ public class SettingsFragment extends Fragment
                 startActivity(intent);
             }
         });
-
+        newsCollector=view.findViewById(R.id.bt_opinion);
+        newsCollector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NewsCollector.class);
+                startActivity(intent);
+            }
+        });
 
 
         // Inflate the layout for this fragment

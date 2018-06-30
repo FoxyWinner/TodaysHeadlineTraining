@@ -6,4 +6,9 @@ public class Const
     public static String USER_NAME="请登录";
     public static int USER_ID = 0;
     public static String PARAM_URL = "NEWS_DETAIL_URL";
+
+    public static int USER_ID = 0;//默认为本地用户
+
+
+
 }

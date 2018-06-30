@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_app_logo"
         android:label="@string/app_name"
@@ -34,6 +35,8 @@
         <activity android:name=".activities.PreferenceActivity">
         </activity>
         <activity android:name=".activities.LoginActivity">
+        </activity>
+        <activity android:name=".activities.NewsCollector">
         </activity>
     </application>
 

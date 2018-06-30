@@ -15,6 +15,8 @@ import com.cool.todayheadline.fragments.FavoriteFragment;
 import com.cool.todayheadline.fragments.HomeFragment;
 import com.cool.todayheadline.fragments.SettingsFragment;
 
+import org.litepal.LitePal;
+
 public class MainActivity extends AppCompatActivity
 {
 
@@ -85,6 +87,8 @@ public class MainActivity extends AppCompatActivity
         mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
 
+        //加载SQLite数据库
+        LitePal.getDatabase();
 
 
     }
