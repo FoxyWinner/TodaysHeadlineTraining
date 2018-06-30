@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity  {
     private TextView textView;
     private int id;
 
-    private ImageButton backButton;
+    private ImageView backButton;
     private TextView response;
     private Handler handler = new Handler();
 
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity  {
 
 
 
-        backButton = (ImageButton)findViewById(R.id.back_btn);
+        backButton = (ImageView)findViewById(R.id.back_btn);
 
         backButton.setOnClickListener(new OnClickListener() {
             @Override
