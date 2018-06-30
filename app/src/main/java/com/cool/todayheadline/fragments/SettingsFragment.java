@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.LoginActivity;
 import com.cool.todayheadline.activities.NewsCollector;
 import com.cool.todayheadline.utils.Const;
+import com.cool.todayheadline.utils.PreferenceNewsUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +37,7 @@ public class SettingsFragment extends Fragment
 
     private RelativeLayout relativeLayout;
     private Button newsCollector;
+    private Button clearCache;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -103,6 +106,14 @@ public class SettingsFragment extends Fragment
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NewsCollector.class);
                 startActivity(intent);
+            }
+        });
+        clearCache=view.findViewById(R.id.bt_aboutus);
+        clearCache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceNewsUtil.deleteUserAllNews(Const.USER_ID+"");
+                Toast.makeText(getActivity(),"清理完成",Toast.LENGTH_SHORT).show();
             }
         });
 
