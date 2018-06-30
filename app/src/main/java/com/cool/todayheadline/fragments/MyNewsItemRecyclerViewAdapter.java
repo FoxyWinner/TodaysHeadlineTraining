@@ -2,6 +2,8 @@ package com.cool.todayheadline.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,6 +50,11 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
         holder.mAuthorDateView.setText(mValues.get(position).getAuthor()+"\n"+mValues.get(position).getDate());
+
+        //解决因为item重用带来的图片显示错位
+        Resources resources = mActivityContext.getResources();
+        Drawable loadingImg = resources.getDrawable(R.mipmap.img_loading);
+        holder.mImageView.setImageDrawable(loadingImg);
 
         //图片加载
         new DownloadImageTask(holder.mImageView).execute(mValues.get(position).getPic_url());
