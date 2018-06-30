@@ -31,6 +31,7 @@ public class FavoriteFragment extends Fragment
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     private HomeFragment.OnListFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -69,11 +70,9 @@ public class FavoriteFragment extends Fragment
         String userPreference = getActivity().getIntent().getStringExtra(Const.USER_PREFERENCE);
 
         // Set the adapter
-        if (view instanceof RecyclerView)
-        {
             Context context = view.getContext();
 
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view.findViewById(R.id.list);
             //设置分割线
             recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
@@ -83,7 +82,6 @@ public class FavoriteFragment extends Fragment
             String[] urls={url};
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
             new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
-        }
         return view;
     }
 
