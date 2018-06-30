@@ -3,7 +3,6 @@ package com.cool.todayheadline.utils;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.cool.todayheadline.bean.Sys;
 import com.cool.todayheadline.fragments.HomeFragment;
@@ -58,7 +57,6 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                     .build();
             Response response=client.newCall(request).execute();
             String responseData=response.body().string();
-            Log.d(TAG, responseData);
             Gson g=new Gson();
             sys =g.fromJson(responseData,Sys.class);
             while(true){

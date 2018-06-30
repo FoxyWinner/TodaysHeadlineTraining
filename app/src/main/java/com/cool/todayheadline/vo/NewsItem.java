@@ -90,4 +90,18 @@ public class NewsItem
     {
         this.url = url;
     }
+
+    @Override
+    public String toString()
+    {
+        return "NewsItem{" +
+                "id='" + id + '\'' +
+                ", category='" + category + '\'' +
+                ", pic_url='" + pic_url + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", date='" + date + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
