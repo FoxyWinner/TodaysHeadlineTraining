@@ -36,6 +36,8 @@
         </activity>
         <activity android:name=".activities.LoginActivity">
         </activity>
+        <activity android:name=".activities.NewsCollector">
+        </activity>
     </application>
 
 </manifest>

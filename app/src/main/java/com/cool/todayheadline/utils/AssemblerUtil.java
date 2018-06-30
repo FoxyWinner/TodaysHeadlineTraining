@@ -5,6 +5,9 @@ import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.bean.Sys;
 import com.cool.todayheadline.vo.NewsItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AssemblerUtil {
 
     public static NewsItem transform(Sys sys,int i){
@@ -31,5 +34,21 @@ public class AssemblerUtil {
                 newsItem.getUrl(),
                 Const.USER_ID+"");
         return newsItem_table;
+    }
+
+    public static List<NewsItem> tableToNews(List<NewsItem_table> list){
+        List<NewsItem> newsItemList=new ArrayList<NewsItem>();
+        for(NewsItem_table news:list){
+            NewsItem newsItem=new NewsItem();
+            newsItem.setUrl(news.getUrl());
+            newsItem.setId(news.getId_String());
+            newsItem.setPic_url(news.getPic_url());
+            newsItem.setDate(news.getDate());
+            newsItem.setCategory(news.getCategory());
+            newsItem.setAuthor(news.getAuthor());
+            newsItem.setTitle(news.getTitle());
+            newsItemList.add(newsItem);
+        }
+        return newsItemList;
     }
 }

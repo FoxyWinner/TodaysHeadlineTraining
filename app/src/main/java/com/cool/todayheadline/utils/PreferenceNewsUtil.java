@@ -1,6 +1,7 @@
 package com.cool.todayheadline.utils;
 
 import com.cool.todayheadline.bean.NewsItem_table;
+import com.cool.todayheadline.vo.NewsItem;
 
 import org.litepal.LitePal;
 
@@ -14,10 +15,18 @@ import java.util.List;
  *
  */
 
-public class PreferenceNewsUtil
-{
-    public static void insertNews(NewsItem_table newsItem_table){
+public class PreferenceNewsUtil {
+
+    public static boolean insertNews(NewsItem_table newsItem_table){
+        List<NewsItem_table> list=findAllNews();
+        for(NewsItem_table news:list){
+            if(news.getId_String().equals(newsItem_table.getId_String())
+                    && news.getUser().equals(newsItem_table.getUser())){
+                return false;
+            }
+        }
         newsItem_table.save();
+        return true;
     }
     public static void deleteNews(String user,String id){
         LitePal.deleteAll(NewsItem_table.class,"id_String=? and user=?",id,user);
