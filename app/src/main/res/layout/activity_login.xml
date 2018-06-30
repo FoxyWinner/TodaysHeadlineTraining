@@ -35,9 +35,10 @@
             android:layout_height="21dp"
             android:layout_gravity="right"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back1"/>
 
         <TextView
+            android:id="@+id/response"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,23 +69,20 @@
 
 
             <EditText
-                android:paddingLeft="8dip"
-                android:id="@+id/email"
+                android:paddingLeft="15dip"
+                android:id="@+id/username"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/edittext_bg"
-                android:hint="@string/prompt_email"
-
-
-                 />
+                android:hint="@string/prompt_email" />
 
 
 
 
 
                 <EditText
-                    android:paddingLeft="8dip"
+                    android:paddingLeft="15dip"
                     android:layout_marginTop="50dp"
                     android:id="@+id/password"
                     android:layout_width="300dp"
@@ -147,13 +145,13 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="15dp"
             android:clickable="true"
             android:src="@drawable/weixin" />
          <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-             android:layout_marginRight="10dp"
+             android:layout_marginRight="15dp"
              android:clickable="true"
 
              android:src="@drawable/qq" />
@@ -162,7 +160,7 @@
             <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="15dp"
                 android:clickable="true"
 
                 android:src="@drawable/weibo" />

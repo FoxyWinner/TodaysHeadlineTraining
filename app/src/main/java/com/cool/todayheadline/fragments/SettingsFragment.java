@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.LoginActivity;
+import com.cool.todayheadline.utils.Const;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +35,7 @@ public class SettingsFragment extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView textView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,7 +79,12 @@ public class SettingsFragment extends Fragment
                              Bundle savedInstanceState)
     {
 
+
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        textView = (TextView)view.findViewById(R.id.tv_username);
+
+        textView.setText(Const.USER_NAME);
         relativeLayout = (RelativeLayout) view.findViewById(R.id.re_myinfo);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

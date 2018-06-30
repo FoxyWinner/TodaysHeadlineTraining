@@ -49,6 +49,10 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
     @Override
     protected Sys doInBackground(String... strings) {
+
+
+
+
         String url=(String)strings[0];
         Sys sys=new Sys();
         try{
