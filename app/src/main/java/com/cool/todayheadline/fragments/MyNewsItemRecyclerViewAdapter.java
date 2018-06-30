@@ -20,6 +20,7 @@ import com.cool.todayheadline.fragments.HomeFragment.OnListFragmentInteractionLi
 import com.cool.todayheadline.utils.AssemblerUtil;
 import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
+import com.cool.todayheadline.utils.TSnackBarUtil;
 import com.cool.todayheadline.vo.NewsItem;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
@@ -87,7 +88,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                 PreferenceNewsUtil.insertNews(newsItem_table);
                 holder.mView.quickClose();
 
-//                TSnackBarUtil.showTBar(recyclerView,"收藏成功");
+                TSnackBarUtil.showTBar(recyclerView,"收藏成功");
 
             }
         });

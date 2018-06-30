@@ -2,7 +2,6 @@ package com.cool.todayheadline.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -71,11 +70,9 @@ public class HomeFragment extends Fragment
         String userPreference = getActivity().getIntent().getStringExtra(Const.USER_PREFERENCE);
 
         // Set the adapter
-        if (view instanceof RecyclerView)
-        {
             Context context = view.getContext();
 
-            recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view.findViewById(R.id.list);
             //设置分割线
             recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
@@ -86,7 +83,6 @@ public class HomeFragment extends Fragment
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
 
             new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
-        }
         return view;
     }
 
