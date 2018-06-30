@@ -79,7 +79,7 @@
         android:drawableRight="@mipmap/right" />
 
     <Button
-        android:drawablePadding="10dip"
+        android:drawablePadding="11dip"
         android:drawableLeft="@mipmap/trash"
         android:id="@+id/bt_aboutus"
         android:layout_marginTop="10dp"
