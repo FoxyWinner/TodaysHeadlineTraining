@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cool.todayheadline.R;
@@ -68,6 +69,23 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         new DownloadImageTask(holder.mImageView).execute(mValues.get(position).getPic_url());
 
 
+        //为整个item设置点击事件
+
+        holder.mLinearLayout.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent();
+                Bundle bundle=new Bundle();
+                intent.setClass(mActivityContext, NewsDetailActivity.class);
+                bundle.putString(PARAM_URL, holder.mItem.getUrl());
+                intent.putExtras(bundle);
+                mActivityContext.startActivity(intent);
+            }
+        });
+
         holder.mCancelButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -85,27 +103,17 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             public void onClick(View view)
             {
                 NewsItem_table newsItem_table = AssemblerUtil.transformToPOJO(holder.mItem);
-                PreferenceNewsUtil.insertNews(newsItem_table);
-                holder.mView.quickClose();
+                if (PreferenceNewsUtil.insertNews(newsItem_table))
+                {
+                    TSnackBarUtil.showTBar(recyclerView," 收藏成功");
+                }
+                else
+                {
+                    TSnackBarUtil.showTBar(recyclerView," 收藏失败，请检查是否重复收藏");
+                }
+                holder.mView.smoothClose();
 
-                TSnackBarUtil.showTBar(recyclerView,"收藏成功");
 
-            }
-        });
-
-
-        holder.mView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent();
-                Bundle bundle=new Bundle();
-                intent.setClass(mActivityContext, NewsDetailActivity.class);
-                bundle.putString(PARAM_URL, holder.mItem.getUrl());
-
-                intent.putExtras(bundle);
-                mActivityContext.startActivity(intent);
             }
         });
     }
@@ -120,6 +128,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         public final SwipeMenuLayout mView;
+        public final LinearLayout mLinearLayout;
         public final ImageView mImageView;
         public final Button mCancelButton;
         public final Button mCollectButton;
@@ -134,6 +143,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         {
             super(view);
             mView = (SwipeMenuLayout) view;
+            mLinearLayout = (LinearLayout)view.findViewById(R.id.news_item_ll);
             mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
@@ -142,16 +152,5 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             mCollectButton = (Button) view.findViewById(R.id.news_item_collect_bt);
         }
 
-        @Override
-        public String toString()
-        {
-            return "ViewHolder{" +
-                    "mView=" + mView +
-                    ", mImageView=" + mImageView +
-                    ", mTitleView=" + mTitleView +
-                    ", mAuthorDateView=" + mAuthorDateView +
-                    ", mItem=" + mItem +
-                    '}';
-        }
     }
 }
