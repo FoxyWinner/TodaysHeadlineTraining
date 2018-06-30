@@ -64,6 +64,8 @@
 
 
     <Button
+        android:drawablePadding="10dip"
+        android:drawableLeft="@mipmap/heart"
         android:id="@+id/bt_callus"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -77,6 +79,8 @@
         android:drawableRight="@mipmap/right" />
 
     <Button
+        android:drawablePadding="10dip"
+        android:drawableLeft="@mipmap/trash"
         android:id="@+id/bt_aboutus"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
@@ -91,6 +95,8 @@
 
 
     <Button
+        android:drawablePadding="10dip"
+        android:drawableLeft="@mipmap/book"
         android:id="@+id/bt_opinion"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
@@ -104,6 +110,8 @@
         android:drawableRight="@mipmap/right"/>
 
     <Button
+        android:drawablePadding="10dip"
+        android:drawableLeft="@mipmap/man"
         android:id="@+id/bt_resetlogin"
         android:layout_width="fill_parent"
         android:layout_height="50dp"

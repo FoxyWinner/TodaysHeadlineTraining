@@ -35,5 +35,8 @@ public class PreferenceNewsUtil {
         List<NewsItem_table> list= LitePal.findAll(NewsItem_table.class);
         return list;
     }
+    public static void deleteUserAllNews(String user){
+        LitePal.deleteAll(NewsItem_table.class,"user=?",user);
+    }
 
 }
