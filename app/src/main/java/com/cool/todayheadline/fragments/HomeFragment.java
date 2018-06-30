@@ -2,6 +2,7 @@ package com.cool.todayheadline.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     private OnListFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -73,16 +75,16 @@ public class HomeFragment extends Fragment
         {
             Context context = view.getContext();
 
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             //设置分割线
             recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
             String url= Info.path_queryNewsItems("");
-//            String url="http://v.juhe.cn/toutiao/index?type="+userPreference+"&key=5465c4c5d60f72c3d756a9f1a9b8437d";
             String[] urls={url};
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
+
             new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
         }
         return view;

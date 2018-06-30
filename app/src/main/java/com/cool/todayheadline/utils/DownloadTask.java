@@ -23,9 +23,9 @@ import okhttp3.Response;
 
 public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
-    RecyclerView recyclerView;
-    HomeFragment.OnListFragmentInteractionListener mListener;
-    Activity activity;
+    private RecyclerView recyclerView;
+    private HomeFragment.OnListFragmentInteractionListener mListener;
+    private Activity activity;
 
     private static final String TAG = "DownloadTask";
 
@@ -81,6 +81,6 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
             newsItemList.add(newsItem);
         }
         new UIHelper().hideDialogForLoading();
-        recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,newsItemList, mListener));
+        recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList, mListener));
     }
 }

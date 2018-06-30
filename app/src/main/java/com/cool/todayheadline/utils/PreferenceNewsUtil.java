@@ -14,8 +14,8 @@ import java.util.List;
  *
  */
 
-public class PreferenceNewsUtil {
-
+public class PreferenceNewsUtil
+{
     public static void insertNews(NewsItem_table newsItem_table){
         newsItem_table.save();
     }

@@ -15,8 +15,7 @@ public class NewsItem_table extends LitePalSupport
     private String user;
     public NewsItem_table(){}
 
-    public NewsItem_table(int id, String id_String, String category, String pic_url, String title, String author, String date, String url, String user) {
-        this.id = id;
+    public NewsItem_table(String id_String, String category, String pic_url, String title, String author, String date, String url, String user) {
         this.id_String = id_String;
         this.category = category;
         this.pic_url = pic_url;

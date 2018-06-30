@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,13 @@ import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.NewsDetailActivity;
+import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.fragments.HomeFragment.OnListFragmentInteractionListener;
+import com.cool.todayheadline.utils.AssemblerUtil;
 import com.cool.todayheadline.utils.DownloadImageTask;
+import com.cool.todayheadline.utils.PreferenceNewsUtil;
 import com.cool.todayheadline.vo.NewsItem;
+import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
 import java.util.List;
 
@@ -26,14 +29,16 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
 {
     private static String PARAM_URL = "NEWS_DETAIL_URL";
 
+    private RecyclerView recyclerView;
     private final List<NewsItem> mValues;
     private final OnListFragmentInteractionListener mListener;
     private static final String TAG = "MyNewsItemRecyclerViewA";
     private final Context mActivityContext;
 
-    public MyNewsItemRecyclerViewAdapter(Context context,List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
+    public MyNewsItemRecyclerViewAdapter(Context context,RecyclerView recyclerView,List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
     {
         mActivityContext = context;
+        this.recyclerView = recyclerView;
         mValues = newsItemList;
         mListener = listener;
     }
@@ -78,8 +83,12 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             @Override
             public void onClick(View view)
             {
-                //todo: 柳斌辉 执行收藏功能
-                Log.d(TAG, "onClick: "+holder.mItem.toString());
+                NewsItem_table newsItem_table = AssemblerUtil.transformToPOJO(holder.mItem);
+                PreferenceNewsUtil.insertNews(newsItem_table);
+                holder.mView.quickClose();
+
+//                TSnackBarUtil.showTBar(recyclerView,"收藏成功");
+
             }
         });
 
@@ -109,7 +118,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public final View mView;
+        public final SwipeMenuLayout mView;
         public final ImageView mImageView;
         public final Button mCancelButton;
         public final Button mCollectButton;
@@ -123,7 +132,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         public ViewHolder(View view)
         {
             super(view);
-            mView = view;
+            mView = (SwipeMenuLayout) view;
             mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
