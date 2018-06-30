@@ -9,7 +9,7 @@ public class AssemblerUtil {
     public static NewsItem transform(Sys sys,int i){
         NewsItem newsItem = new NewsItem();
         Data data=sys.getResult().getData()[i];
-        newsItem.setId(i+"");
+        newsItem.setId(data.getUniquekey());
         newsItem.setTitle(data.getTitle());
         newsItem.setAuthor(data.getAuthor_name());
         newsItem.setCategory(data.getCategory());
