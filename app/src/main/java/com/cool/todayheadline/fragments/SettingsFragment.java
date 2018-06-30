@@ -9,10 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.LoginActivity;
+import com.cool.todayheadline.activities.NewsCollector;
+import com.cool.todayheadline.utils.Const;
 
 /**
  * A simple {@link Fragment} subclass.

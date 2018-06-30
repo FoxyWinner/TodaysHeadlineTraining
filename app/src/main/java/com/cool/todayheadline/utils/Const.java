@@ -7,7 +7,7 @@ public class Const
     public static int USER_ID = 0;
     public static String PARAM_URL = "NEWS_DETAIL_URL";
 
-    public static int USER_ID = 0;//默认为本地用户
+
 
 
 
