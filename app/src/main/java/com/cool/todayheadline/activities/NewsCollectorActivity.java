@@ -18,6 +18,7 @@ import com.cool.todayheadline.adapters.MyCollectorItemRecyclerViewAdapter;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.fragments.HomeFragment;
 import com.cool.todayheadline.utils.AssemblerUtil;
+import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
 import com.cool.todayheadline.vo.NewsItem;
 
@@ -51,7 +52,7 @@ public class NewsCollectorActivity extends AppCompatActivity{
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        List<NewsItem_table> newsItem_tables= PreferenceNewsUtil.findAllNews();
+        List<NewsItem_table> newsItem_tables= PreferenceNewsUtil.findAllNews(Const.USER_ID+"");
         List<NewsItem> newsItemList= AssemblerUtil.tableToNews(newsItem_tables);
         recyclerView.setAdapter(new MyCollectorItemRecyclerViewAdapter(context,recyclerView,newsItemList, mListener));
 
