@@ -20,37 +20,16 @@ import com.cool.todayheadline.vo.NewsItem;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavoriteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-
 public class FavoriteFragment extends Fragment
 {
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
     private HomeFragment.OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public FavoriteFragment()
     {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static HomeFragment newInstance(int columnCount)
-    {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -81,7 +60,7 @@ public class FavoriteFragment extends Fragment
             String url= Info.path_queryNewsItems(userPreference);
             String[] urls={url};
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
-            new DownloadTask(recyclerView,mListener,getActivity()).execute(urls);
+            new DownloadTask(recyclerView,getActivity()).execute(urls);
         return view;
     }
 
@@ -96,11 +75,6 @@ public class FavoriteFragment extends Fragment
     public void onDetach()
     {
         super.onDetach();
-//        mListener = null;
     }
 
-    public interface OnListFragmentInteractionListener
-    {
-        void onListFragmentInteraction(NewsItem item);
-    }
 }

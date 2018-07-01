@@ -167,7 +167,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
 
-            android:src="@drawable/mail" />
+            android:src="@drawable/ic_mail" />
 
 
     </LinearLayout>

@@ -48,13 +48,10 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
                 if (result == null || result.equals("")) {
                         result = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.img_loading_fail);
                         bmImage.setImageBitmap(result);
-                        bmImage.setTag("");
                 }
                 else
                 {
                         bmImage.setImageBitmap(result);
-                        bmImage.setTag(urldisplay);
-//                        Log.d(TAG, "onPostExecute: bmImage.tag="+bmImage.getTag());
                 }
 
         }
