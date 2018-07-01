@@ -1,4 +1,4 @@
-package com.cool.todayheadline.fragments;
+package com.cool.todayheadline.adapters;
 
 import android.content.Context;
 import android.content.Intent;

@@ -13,7 +13,7 @@ import android.view.View;
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.fragments.HomeFragment;
-import com.cool.todayheadline.fragments.MyNewsItemRecyclerViewAdapter;
+import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
 import com.cool.todayheadline.utils.AssemblerUtil;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
 import com.cool.todayheadline.vo.NewsItem;
