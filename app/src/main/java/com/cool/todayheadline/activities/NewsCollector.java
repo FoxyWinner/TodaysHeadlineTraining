@@ -8,9 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.bean.NewsItem_table;
@@ -28,7 +26,7 @@ public class NewsCollector extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.news_collector);
+        setContentView(R.layout.activity_news_collector);
         Context context = this;
 
         RecyclerView recyclerView = findViewById(R.id.list);

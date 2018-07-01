@@ -29,7 +29,7 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_pererences);
+        setContentView(R.layout.activity_preferences);
 
         gridView =(GridView) findViewById(R.id.gridView);
         adapter =new ImageAdapter(this);
