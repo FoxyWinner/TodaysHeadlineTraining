@@ -42,6 +42,8 @@ public class SettingsFragment extends Fragment
     private String mParam1;
     private String mParam2;
     private TextView textView;
+    private Button exit_btn;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,6 +90,7 @@ public class SettingsFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+       exit_btn = view.findViewById(R.id.bt_exit);
         textView = (TextView)view.findViewById(R.id.tv_username);
 
         textView.setText(Const.USER_NAME);
@@ -96,8 +99,25 @@ public class SettingsFragment extends Fragment
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                if(Const.USER_ID == 0) {
+
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+                    startActivity(intent);
+                }
+            }
+        });
+        if(Const.USER_ID !=0){
+            exit_btn.setVisibility(View.VISIBLE);
+        }
+
+        exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Const.USER_ID = 0 ;
+                Toast.makeText(getActivity(),"退出登陆成功",Toast.LENGTH_LONG).show();
+                textView.setText("请登录");
+                exit_btn.setVisibility(View.INVISIBLE);
             }
         });
         newsCollector=view.findViewById(R.id.bt_opinion);
@@ -108,6 +128,7 @@ public class SettingsFragment extends Fragment
                 startActivity(intent);
             }
         });
+
         clearCache=view.findViewById(R.id.bt_aboutus);
         clearCache.setOnClickListener(new View.OnClickListener() {
             @Override
