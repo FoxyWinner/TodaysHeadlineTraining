@@ -16,18 +16,16 @@ import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.NewsDetailActivity;
-import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.fragments.HomeFragment.OnListFragmentInteractionListener;
-import com.cool.todayheadline.utils.AssemblerUtil;
+import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
-import com.cool.todayheadline.utils.TSnackBarUtil;
 import com.cool.todayheadline.vo.NewsItem;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
 import java.util.List;
 
-public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsItemRecyclerViewAdapter.ViewHolder>
+public class MyCollectorItemRecyclerViewAdapter extends RecyclerView.Adapter<MyCollectorItemRecyclerViewAdapter.ViewHolder>
 {
     private static String PARAM_URL = "NEWS_DETAIL_URL";
 
@@ -40,7 +38,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     private static int count1=0;
     private static  int count2=0;
 
-    public MyNewsItemRecyclerViewAdapter(Context context,RecyclerView recyclerView,List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
+    public MyCollectorItemRecyclerViewAdapter(Context context, RecyclerView recyclerView, List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
     {
         mActivityContext = context;
         this.recyclerView = recyclerView;
@@ -52,7 +50,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_newsitem, parent, false);
+                .inflate(R.layout.activity_news_collector_listitem, parent, false);
 
 
         return new ViewHolder(view);
@@ -95,36 +93,19 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             }
         });
 
-        holder.mCancelButton.setOnClickListener(new View.OnClickListener()
+        holder.mDeleteButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                PreferenceNewsUtil.deleteNews(Const.USER_ID+"",mValues.get(position).getId());
                 mValues.remove(position);
-                MyNewsItemRecyclerViewAdapter.this.notifyItemRemoved(position);
-                MyNewsItemRecyclerViewAdapter.this.notifyItemRangeChanged(0,MyNewsItemRecyclerViewAdapter.this.mValues.size());
-            }
-        });
-
-        holder.mCollectButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                NewsItem_table newsItem_table = AssemblerUtil.transformToPOJO(holder.mItem);
-                if (PreferenceNewsUtil.insertNews(newsItem_table))
-                {
-                    TSnackBarUtil.showTBar(recyclerView," 收藏成功");
-                }
-                else
-                {
-                    TSnackBarUtil.showTBar(recyclerView," 收藏失败，请检查是否重复收藏");
-                }
-                holder.mView.smoothClose();
-
+                MyCollectorItemRecyclerViewAdapter.this.notifyItemRemoved(position);
+                MyCollectorItemRecyclerViewAdapter.this.notifyItemRangeChanged(0,MyCollectorItemRecyclerViewAdapter.this.mValues.size());
 
             }
         });
+
     }
 
     @Override
@@ -139,8 +120,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         public final SwipeMenuLayout mView;
         public final LinearLayout mLinearLayout;
         public final ImageView mImageView;
-        public final Button mCancelButton;
-        public final Button mCollectButton;
+        public final Button mDeleteButton;
 
 
         public final TextView mTitleView;
@@ -157,8 +137,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
             mImageView.setTag("");//默认设置mImageView没有加载
-            mCancelButton = (Button) view.findViewById(R.id.news_item_cancel_bt);
-            mCollectButton = (Button) view.findViewById(R.id.news_item_collect_bt);
+            mDeleteButton = (Button) view.findViewById(R.id.news_item_delete_collect_bt);
         }
 
     }
