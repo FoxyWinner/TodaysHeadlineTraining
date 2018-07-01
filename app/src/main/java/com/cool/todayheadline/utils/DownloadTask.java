@@ -7,9 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.cool.todayheadline.bean.Sys;
-import com.cool.todayheadline.fragments.HomeFragment;
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
+import com.cool.todayheadline.bean.Sys;
 import com.cool.todayheadline.vo.NewsItem;
 import com.google.gson.Gson;
 
@@ -27,16 +26,13 @@ import okhttp3.Response;
 public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
     RecyclerView recyclerView;
-    HomeFragment.OnListFragmentInteractionListener mListener;
     Activity activity;
 
     private static final String TAG = "DownloadTask";
 
     public DownloadTask(RecyclerView recyclerView,
-                        HomeFragment.OnListFragmentInteractionListener mListener,
                         Activity activity){
         this.recyclerView=recyclerView;
-        this.mListener=mListener;
         this.activity=activity;
     }
 
@@ -96,7 +92,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 newsItemList.add(newsItem);
             }
             new UIHelper().hideDialogForLoading();
-            recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList, mListener));
+            recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
 
         }
     }

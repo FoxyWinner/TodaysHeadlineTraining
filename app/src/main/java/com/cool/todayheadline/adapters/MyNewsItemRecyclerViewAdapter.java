@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.NewsDetailActivity;
 import com.cool.todayheadline.bean.NewsItem_table;
-import com.cool.todayheadline.fragments.HomeFragment.OnListFragmentInteractionListener;
 import com.cool.todayheadline.utils.AssemblerUtil;
 import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
@@ -33,19 +32,17 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
 
     private RecyclerView recyclerView;
     private final List<NewsItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
     private static final String TAG = "MyNewsItemRecyclerViewA";
     private final Context mActivityContext;
 
     private static int count1=0;
     private static  int count2=0;
 
-    public MyNewsItemRecyclerViewAdapter(Context context,RecyclerView recyclerView,List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
+    public MyNewsItemRecyclerViewAdapter(Context context,RecyclerView recyclerView,List<NewsItem> newsItemList)
     {
         mActivityContext = context;
         this.recyclerView = recyclerView;
         mValues = newsItemList;
-        mListener = listener;
     }
 
     @Override

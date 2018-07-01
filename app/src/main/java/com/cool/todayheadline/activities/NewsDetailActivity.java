@@ -25,8 +25,6 @@ public class NewsDetailActivity extends AppCompatActivity
             Resources resources = this.getResources();
             Drawable bgColorDrawable = resources.getDrawable(R.drawable.news_detail_bar_bg);
             actionBar.setBackgroundDrawable(bgColorDrawable);
-            //todo:这句话是无效的，怎样给actionbar设置图标？
-            actionBar.setIcon(R.mipmap.ic_app_logo);
             actionBar.setTitle("新闻");
         }
 
