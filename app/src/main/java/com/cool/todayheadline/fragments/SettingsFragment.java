@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.activities.InfoActivity;
 import com.cool.todayheadline.activities.LoginActivity;
 import com.cool.todayheadline.activities.NewsCollectorActivity;
 import com.cool.todayheadline.utils.Const;
@@ -27,6 +28,7 @@ public class SettingsFragment extends Fragment
 
     private TextView textView;
     private Button exit_btn;
+    private Button about_btn;
 
 
 
@@ -49,6 +51,15 @@ public class SettingsFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        about_btn = view.findViewById(R.id.bt_resetlogin);
+        about_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent a = new Intent(getActivity(), InfoActivity.class);
+                startActivity(a);
+            }
+        });
        exit_btn = view.findViewById(R.id.bt_exit);
         textView = (TextView)view.findViewById(R.id.tv_username);
 
