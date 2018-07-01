@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.activities.InfoActivity;
 import com.cool.todayheadline.activities.LoginActivity;
 import com.cool.todayheadline.activities.NewsCollectorActivity;
 import com.cool.todayheadline.utils.Const;
@@ -26,6 +27,9 @@ public class SettingsFragment extends Fragment
     private Button clearCache;
 
     private TextView textView;
+    private Button exit_btn;
+    private Button about_btn;
+
 
 
     public SettingsFragment()
@@ -47,6 +51,16 @@ public class SettingsFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        about_btn = view.findViewById(R.id.bt_resetlogin);
+        about_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent a = new Intent(getActivity(), InfoActivity.class);
+                startActivity(a);
+            }
+        });
+       exit_btn = view.findViewById(R.id.bt_exit);
         textView = (TextView)view.findViewById(R.id.tv_username);
 
         textView.setText(Const.USER_NAME);
@@ -55,8 +69,25 @@ public class SettingsFragment extends Fragment
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                if(Const.USER_ID == 0) {
+
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+                    startActivity(intent);
+                }
+            }
+        });
+        if(Const.USER_ID !=0){
+            exit_btn.setVisibility(View.VISIBLE);
+        }
+
+        exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Const.USER_ID = 0 ;
+                Toast.makeText(getActivity(),"退出登陆成功",Toast.LENGTH_LONG).show();
+                textView.setText("请登录");
+                exit_btn.setVisibility(View.INVISIBLE);
             }
         });
         newsCollector=view.findViewById(R.id.bt_opinion);
@@ -67,11 +98,13 @@ public class SettingsFragment extends Fragment
                 startActivity(intent);
             }
         });
+
         clearCache=view.findViewById(R.id.bt_aboutus);
         clearCache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PreferenceNewsUtil.deleteUserAllNews(Const.USER_ID+"");
+                PreferenceNewsUtil.cache_deleteAllNews();
                 Toast.makeText(getActivity(),"清理完成",Toast.LENGTH_SHORT).show();
             }
         });

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.MainActivity;
+import com.cool.todayheadline.bean.MonitorEditText;
 import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.HttpThread_Register;
 
@@ -50,6 +51,7 @@ public class RegisterFragment extends Fragment {
         mUsername =  view.findViewById(R.id.reg_username);
         mPassword =  view.findViewById(R.id.reg_password);
         response = view.findViewById(R.id.reg_response);
+
 
         textView = view.findViewById(R.id.reg_tv);
         String str="老子同意<font color='#5CACEE'>“用户协议”</font>和<font color='#5CACEE'>“隐私政策”</font>";
@@ -83,6 +85,7 @@ public class RegisterFragment extends Fragment {
 
 
         Button mEmailSignInButton = view.findViewById(R.id.reg_button);
+        new MonitorEditText().SetMonitorEditText(mEmailSignInButton, mUsername, mPassword,mEmail);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

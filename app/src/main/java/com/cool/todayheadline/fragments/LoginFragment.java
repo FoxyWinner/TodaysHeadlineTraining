@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.MainActivity;
+import com.cool.todayheadline.bean.MonitorEditText;
 import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.HttpThread;
 
@@ -100,7 +101,10 @@ public class LoginFragment extends Fragment {
         });
 
 
-        Button mEmailSignInButton = view.findViewById(R.id.email_sign_in_button);
+
+
+        final Button mEmailSignInButton = view.findViewById(R.id.email_sign_in_button);
+        new MonitorEditText().SetMonitorEditText(mEmailSignInButton, mUsername, mPassword);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +112,7 @@ public class LoginFragment extends Fragment {
                 final String password = mPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+
 
                     Toast.makeText(getActivity(), "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
                     return;

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
+import com.cool.todayheadline.bean.Cache_NewsItem;
 import com.cool.todayheadline.bean.Sys;
 import com.cool.todayheadline.vo.NewsItem;
 import com.google.gson.Gson;
@@ -82,6 +83,12 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 }
             });
             sb.show();
+            List<Cache_NewsItem> cacheNewsItems=PreferenceNewsUtil.cache_findAllNews();
+            if(cacheNewsItems!=null){
+                List<NewsItem> newsItemList=AssemblerUtil.CacheTableTONewsItem(cacheNewsItems);
+                new UIHelper().hideDialogForLoading();
+                recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
+            }
         }
         else {
             int total=s.getResult().getData().length;
@@ -93,7 +100,10 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
             }
             new UIHelper().hideDialogForLoading();
             recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
-
+            List<Cache_NewsItem> cacheNewsItems=AssemblerUtil.NewsItemToCacheTable(newsItemList);
+            for(Cache_NewsItem cacheNewsItem:cacheNewsItems){
+                PreferenceNewsUtil.cache_insertNews(cacheNewsItem);
+            }
         }
     }
 }

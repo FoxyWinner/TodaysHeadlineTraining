@@ -37,4 +37,16 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_info">关于我们</string>
+    <string name="large_text">
+        "15组是\n"
+        "开发人员：侯俊杰、柳斌辉、李赫"
+        "PPT设计：XXX
+
+
+
+
+
+    </string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -39,22 +39,15 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_greeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv_userphoto"
-            android:layout_centerHorizontal="true"
-            android:text="点击进行登陆"
-            android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+
 
         <TextView
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/ll_name"
 
+
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:text="未登录"
             android:textColor="#353535"
@@ -123,5 +116,20 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:drawableRight="@mipmap/right" />
+    <Button
+        android:visibility="invisible"
+        android:drawablePadding="10dip"
+        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+        android:id="@+id/bt_exit"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/button_bg_selector"
+        android:text="退出登陆"
+        android:textSize="17sp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableRight="@mipmap/right"/>
 
 </LinearLayout>
