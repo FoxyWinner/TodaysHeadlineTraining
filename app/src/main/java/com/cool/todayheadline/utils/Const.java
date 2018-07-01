@@ -8,6 +8,8 @@ public class Const
     public static String PARAM_URL = "NEWS_DETAIL_URL";
     public static  int EMAIL = 1;
 
+    public static long CACHE_MAX_SIZE =  10 * 1024 * 1024;//10MB;
+
 
 
 

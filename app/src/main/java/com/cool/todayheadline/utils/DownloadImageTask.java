@@ -29,21 +29,35 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         protected Bitmap doInBackground(String... urls)
         {
                 urldisplay = urls[0];
-                Bitmap bitmap = null;
-                try
+                //尝试从缓存中取出bitmap
+                ImgCacheUtil.initDiskLruCache(mContext, "CacheDir");
+                Bitmap bitmap = ImgCacheUtil.getCache(urldisplay);
+
+                if (bitmap == null)
                 {
-                        InputStream in = new java.net.URL(urldisplay).openStream();
-                        bitmap = BitmapFactory.decodeStream(in);
-                } catch (Exception e)
-                {
-                        Log.e("Error", e.getMessage());
-                        e.printStackTrace();
+                        try
+                        {
+                                InputStream in = new java.net.URL(urldisplay).openStream();
+
+                                ImgCacheUtil.cacheImage(in, urldisplay);
+
+                                //这个地方能不能直接拿bitmap进行缓存
+                                InputStream in2 = new java.net.URL(urldisplay).openStream();
+                                bitmap = BitmapFactory.decodeStream(in2);
+
+                        } catch (Exception e)
+                        {
+                                Log.e("Error", e.getMessage());
+                                e.printStackTrace();
+                        }
                 }
+
                 return bitmap;
         }
 
         protected void onPostExecute(Bitmap result)
         {
+
                 super.onPostExecute(result);
                 if (result == null || result.equals("")) {
                         result = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.img_loading_fail);
@@ -51,8 +65,13 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
                 }
                 else
                 {
+
+                        //todo:为什么在模拟器上会图片缩小
                         bmImage.setImageBitmap(result);
                 }
 
         }
+
+
+
 }

@@ -19,11 +19,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity  {
 
 
-
-
-
-
-    // UI references.
+// UI references.
 
     private ViewPager viewPager;
     private FragmentPagerAdapter mAdapter;
