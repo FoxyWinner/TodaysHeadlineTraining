@@ -1,5 +1,8 @@
 package com.cool.todayheadline.utils;
 
+import android.widget.ListView;
+
+import com.cool.todayheadline.bean.Cache_NewsItem;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.vo.NewsItem;
 
@@ -36,6 +39,30 @@ public class PreferenceNewsUtil {
     }
     public static void deleteUserAllNews(String user){
         LitePal.deleteAll(NewsItem_table.class,"user=?",user);
+    }
+
+    /*
+        对缓存表进行操作
+     */
+
+    public static List<Cache_NewsItem> cache_findAllNews(){
+        List<Cache_NewsItem> list= LitePal.findAll(Cache_NewsItem.class);
+        return list;
+    }
+
+    public static Boolean cache_insertNews(Cache_NewsItem cacheNewsItem){
+        List<Cache_NewsItem> list=cache_findAllNews();
+        for(Cache_NewsItem news:list){
+            if(news.getId_String().equals(cacheNewsItem.getId_String())){
+                return false;
+            }
+        }
+        cacheNewsItem.save();
+        return true;
+    }
+
+    public static void cache_deleteAllNews(){
+        LitePal.deleteAll(Cache_NewsItem.class);
     }
 
 }

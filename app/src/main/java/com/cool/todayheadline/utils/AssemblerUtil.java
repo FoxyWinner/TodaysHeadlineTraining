@@ -1,5 +1,6 @@
 package com.cool.todayheadline.utils;
 
+import com.cool.todayheadline.bean.Cache_NewsItem;
 import com.cool.todayheadline.bean.Data;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.bean.Sys;
@@ -39,6 +40,37 @@ public class AssemblerUtil {
     public static List<NewsItem> tableToNews(List<NewsItem_table> list){
         List<NewsItem> newsItemList=new ArrayList<NewsItem>();
         for(NewsItem_table news:list){
+            NewsItem newsItem=new NewsItem();
+            newsItem.setUrl(news.getUrl());
+            newsItem.setId(news.getId_String());
+            newsItem.setPic_url(news.getPic_url());
+            newsItem.setDate(news.getDate());
+            newsItem.setCategory(news.getCategory());
+            newsItem.setAuthor(news.getAuthor());
+            newsItem.setTitle(news.getTitle());
+            newsItemList.add(newsItem);
+        }
+        return newsItemList;
+    }
+    public static List<Cache_NewsItem> NewsItemToCacheTable(List<NewsItem> list){
+        List<Cache_NewsItem> cacheNewsItems=new ArrayList<Cache_NewsItem>();
+        for(NewsItem news:list){
+            Cache_NewsItem cacheNewsItem=new Cache_NewsItem();
+            cacheNewsItem.setUrl(news.getUrl());
+            cacheNewsItem.setId_String(news.getId());
+            cacheNewsItem.setPic_url(news.getPic_url());
+            cacheNewsItem.setDate(news.getDate());
+            cacheNewsItem.setCategory(news.getCategory());
+            cacheNewsItem.setAuthor(news.getAuthor());
+            cacheNewsItem.setTitle(news.getTitle());
+            cacheNewsItems.add(cacheNewsItem);
+        }
+        return cacheNewsItems;
+    }
+
+    public static List<NewsItem> CacheTableTONewsItem(List<Cache_NewsItem> list){
+        List<NewsItem> newsItemList=new ArrayList<NewsItem>();
+        for(Cache_NewsItem news:list){
             NewsItem newsItem=new NewsItem();
             newsItem.setUrl(news.getUrl());
             newsItem.setId(news.getId_String());

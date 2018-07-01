@@ -93,6 +93,7 @@ public class SettingsFragment extends Fragment
             @Override
             public void onClick(View v) {
                 PreferenceNewsUtil.deleteUserAllNews(Const.USER_ID+"");
+                PreferenceNewsUtil.cache_deleteAllNews();
                 Toast.makeText(getActivity(),"清理完成",Toast.LENGTH_SHORT).show();
             }
         });
