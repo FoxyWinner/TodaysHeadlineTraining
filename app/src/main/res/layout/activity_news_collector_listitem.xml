@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mcxtzhang.swipemenulib.SwipeMenuLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:ios="false"
+    android:clickable="true"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/news_item_ll"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:id="@+id/news_item_iv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:src="@mipmap/img_loading"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="4"
+            />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:id="@+id/news_item_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="18dp"
+                android:textSize="18dp"
+                android:text="新闻标题"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                >
+                <TextView
+                    android:text="作者
+2000-00-00 00:00"
+                    android:textColor="@color/author_tx_color"
+                    android:id="@+id/news_item_author_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textAppearance="?attr/textAppearanceListItem"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/news_item_delete_collect_bt"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:background="#FD3D2E"
+        android:textSize="18dp"
+        android:text="删除收藏"
+        android:textColor="@android:color/white"/>
+</com.mcxtzhang.swipemenulib.SwipeMenuLayout>
+

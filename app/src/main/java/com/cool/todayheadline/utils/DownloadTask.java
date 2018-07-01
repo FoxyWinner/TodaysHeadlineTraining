@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.cool.todayheadline.bean.Sys;
 import com.cool.todayheadline.fragments.HomeFragment;
-import com.cool.todayheadline.fragments.MyNewsItemRecyclerViewAdapter;
+import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
 import com.cool.todayheadline.vo.NewsItem;
 import com.google.gson.Gson;
 

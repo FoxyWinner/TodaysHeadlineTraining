@@ -1,10 +1,13 @@
 package com.cool.todayheadline.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
+
+import com.cool.todayheadline.R;
 
 import java.io.InputStream;
 
@@ -12,17 +15,20 @@ import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 {
-        ImageView bmImage;
+        private ImageView bmImage;
         private static final String TAG = "DownloadImageTask";
+        private Context mContext;
+        private String urldisplay;
 
-        public DownloadImageTask(ImageView bmImage)
+        public DownloadImageTask(ImageView bmImage,Context mContext)
         {
         this.bmImage = bmImage;
+        this.mContext = mContext;
         }
 
         protected Bitmap doInBackground(String... urls)
         {
-                String urldisplay = urls[0];
+                urldisplay = urls[0];
                 Bitmap bitmap = null;
                 try
                 {
@@ -40,9 +46,16 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         {
                 super.onPostExecute(result);
                 if (result == null || result.equals("")) {
-                        Log.w(TAG, "onPostExecute:进入result查询失败分支");
+                        result = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.img_loading_fail);
+                        bmImage.setImageBitmap(result);
+                        bmImage.setTag("");
                 }
-                bmImage.setImageBitmap(result);
-                bmImage.setTag(true);
+                else
+                {
+                        bmImage.setImageBitmap(result);
+                        bmImage.setTag(urldisplay);
+//                        Log.d(TAG, "onPostExecute: bmImage.tag="+bmImage.getTag());
+                }
+
         }
 }

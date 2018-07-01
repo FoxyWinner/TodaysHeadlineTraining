@@ -15,7 +15,7 @@ public class TSnackBarUtil
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(Color.parseColor("#464646"));
-        snackbar.setIconLeft(R.drawable.ic_favorite_black_24dp, 24);
+        snackbar.setIconLeft(R.drawable.ic_favorite_pink_24dp, 24);
         TextView textView = (TextView) snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
 //        textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
         textView.setTextColor(Color.WHITE);

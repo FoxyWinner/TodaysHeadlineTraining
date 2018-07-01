@@ -65,7 +65,7 @@
 
     <Button
         android:drawablePadding="10dip"
-        android:drawableLeft="@mipmap/heart"
+        android:drawableLeft="@drawable/ic_favorite_black_24dp"
         android:id="@+id/bt_callus"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -79,8 +79,8 @@
         android:drawableRight="@mipmap/right" />
 
     <Button
-        android:drawablePadding="11dip"
-        android:drawableLeft="@mipmap/trash"
+        android:drawablePadding="10dip"
+        android:drawableLeft="@drawable/ic_delete_sweep_black_24dp"
         android:id="@+id/bt_aboutus"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
@@ -96,7 +96,7 @@
 
     <Button
         android:drawablePadding="10dip"
-        android:drawableLeft="@mipmap/book"
+        android:drawableLeft="@drawable/ic_collections_bookmark_black_24dp"
         android:id="@+id/bt_opinion"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
@@ -111,7 +111,7 @@
 
     <Button
         android:drawablePadding="10dip"
-        android:drawableLeft="@mipmap/man"
+        android:drawableLeft="@drawable/ic_chat_bubble_black_24dp"
         android:id="@+id/bt_resetlogin"
         android:layout_width="fill_parent"
         android:layout_height="50dp"

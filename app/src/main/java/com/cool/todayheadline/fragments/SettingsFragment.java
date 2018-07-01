@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.LoginActivity;
-import com.cool.todayheadline.activities.NewsCollector;
+import com.cool.todayheadline.activities.NewsCollectorActivity;
 import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
 
@@ -104,7 +104,7 @@ public class SettingsFragment extends Fragment
         newsCollector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NewsCollector.class);
+                Intent intent = new Intent(getActivity(), NewsCollectorActivity.class);
                 startActivity(intent);
             }
         });

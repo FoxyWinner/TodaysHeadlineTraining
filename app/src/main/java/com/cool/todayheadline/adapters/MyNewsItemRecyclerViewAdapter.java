@@ -1,4 +1,4 @@
-package com.cool.todayheadline.fragments;
+package com.cool.todayheadline.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +37,9 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     private static final String TAG = "MyNewsItemRecyclerViewA";
     private final Context mActivityContext;
 
+    private static int count1=0;
+    private static  int count2=0;
+
     public MyNewsItemRecyclerViewAdapter(Context context,RecyclerView recyclerView,List<NewsItem> newsItemList, OnListFragmentInteractionListener listener)
     {
         mActivityContext = context;
@@ -50,23 +53,29 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_newsitem, parent, false);
+
+
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position)
     {
+
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
         holder.mAuthorDateView.setText(mValues.get(position).getAuthor()+"\n"+mValues.get(position).getDate());
+
+
+
+        //因为底层的原因，viewholder的重用机制和listview的重用机制并不一样，没想办法做到删除时图片停止刷新了
 
         //解决因为item重用带来的图片显示错位
         Resources resources = mActivityContext.getResources();
         Drawable loadingImg = resources.getDrawable(R.mipmap.img_loading);
         holder.mImageView.setImageDrawable(loadingImg);
 
-        //图片加载
-        new DownloadImageTask(holder.mImageView).execute(mValues.get(position).getPic_url());
+        new DownloadImageTask(holder.mImageView,mActivityContext).execute(mValues.get(position).getPic_url());
 
 
         //为整个item设置点击事件
@@ -147,7 +156,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
-            mImageView.setTag(false);//默认设置mImageView没有加载
+            mImageView.setTag("");//默认设置mImageView没有加载
             mCancelButton = (Button) view.findViewById(R.id.news_item_cancel_bt);
             mCollectButton = (Button) view.findViewById(R.id.news_item_collect_bt);
         }
