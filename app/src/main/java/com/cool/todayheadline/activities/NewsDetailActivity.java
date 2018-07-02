@@ -10,16 +10,20 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.bean.NewsItem_table;
+import com.cool.todayheadline.utils.AssemblerUtil;
+import com.cool.todayheadline.utils.Const;
+import com.cool.todayheadline.utils.PreferenceNewsUtil;
 import com.cool.todayheadline.utils.TSnackBarUtil;
 import com.cool.todayheadline.utils.UIHelper;
+import com.cool.todayheadline.vo.NewsItem;
 
 public class NewsDetailActivity extends AppCompatActivity
 {
     private WebView mNewsWebView;
     FloatingActionButton mFab;
     Toolbar mToolbar;
-
-    private static String PARAM_URL = "NEWS_DETAIL_URL";
+    NewsItem newsItem;
 
 
     @Override
@@ -47,6 +51,8 @@ public class NewsDetailActivity extends AppCompatActivity
 
 
 
+        newsItem = (NewsItem) this.getIntent().getSerializableExtra(Const.PARAM_VO);
+
 
         mFab = (FloatingActionButton) findViewById(R.id.news_detail_fab);
         mFab.setOnClickListener(new View.OnClickListener()
@@ -54,7 +60,15 @@ public class NewsDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                TSnackBarUtil.showTBar(view,"收藏todo");
+                NewsItem_table newsItem_table = AssemblerUtil.transformToPOJO(newsItem);
+                if (PreferenceNewsUtil.insertNews(newsItem_table))
+                {
+                    TSnackBarUtil.showTBar(view," 收藏成功");
+                }
+                else
+                {
+                    TSnackBarUtil.showTBar(view," 收藏失败，请检查是否重复收藏");
+                }
             }
         });
 
@@ -89,8 +103,11 @@ public class NewsDetailActivity extends AppCompatActivity
 
         if(bundle!=null)
         {
-            mNewsWebView.loadUrl((String) bundle.get(PARAM_URL));
+            mNewsWebView.loadUrl((String) bundle.get(Const.PARAM_URL));
         }
+
+
+
 
 
 

@@ -19,6 +19,7 @@ import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.NewsDetailActivity;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.utils.AssemblerUtil;
+import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
 import com.cool.todayheadline.utils.TSnackBarUtil;
@@ -29,8 +30,6 @@ import java.util.List;
 
 public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsItemRecyclerViewAdapter.ViewHolder>
 {
-    private static String PARAM_URL = "NEWS_DETAIL_URL";
-
     private RecyclerView recyclerView;
     private final List<NewsItem> mValues;
     private static final String TAG = "MyNewsItemRecyclerViewA";
@@ -88,8 +87,12 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                 Intent intent = new Intent();
                 Bundle bundle=new Bundle();
                 intent.setClass(mActivityContext, NewsDetailActivity.class);
-                bundle.putString(PARAM_URL, holder.mItem.getUrl());
+                bundle.putString(Const.PARAM_URL, holder.mItem.getUrl());
+
                 intent.putExtras(bundle);
+                intent.putExtra(Const.PARAM_VO,holder.mItem);
+
+
                 mActivityContext.startActivity(intent);
             }
         });
@@ -120,8 +123,6 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                     TSnackBarUtil.showTBar(recyclerView," 收藏失败，请检查是否重复收藏");
                 }
                 holder.mView.smoothClose();
-
-
             }
         });
     }
