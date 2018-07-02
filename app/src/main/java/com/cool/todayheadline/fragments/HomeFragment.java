@@ -1,6 +1,7 @@
 package com.cool.todayheadline.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.Services.NewsNotificationService;
+import com.cool.todayheadline.activities.NewsDetailActivity;
 import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.DownloadTask;
 import com.cool.todayheadline.utils.Info;
@@ -53,19 +56,17 @@ public class HomeFragment extends Fragment
         String userPreference = getActivity().getIntent().getStringExtra(Const.USER_PREFERENCE);
 
         // Set the adapter
-            Context context = view.getContext();
+        Context context = view.getContext();
 
-            recyclerView = (RecyclerView) view.findViewById(R.id.list);
-            //设置分割线
-            recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
+        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        //设置分割线
+        recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            String url= Info.path_queryNewsItems("");
-            String[] urls={url};
-            List<NewsItem> newsItemList=new ArrayList<NewsItem>();
-
-            new DownloadTask(recyclerView,getActivity()).execute(urls);
+        String url= Info.path_queryNewsItems("");
+        String[] urls={url};
+        new DownloadTask(recyclerView,getActivity()).execute(urls);
         return view;
     }
 

@@ -59,7 +59,6 @@ public class FavoriteFragment extends Fragment
 
             String url= Info.path_queryNewsItems(userPreference);
             String[] urls={url};
-            List<NewsItem> newsItemList=new ArrayList<NewsItem>();
             new DownloadTask(recyclerView,getActivity()).execute(urls);
         return view;
     }

@@ -1,6 +1,7 @@
 package com.cool.todayheadline.utils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.cool.todayheadline.Services.NewsNotificationService;
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
 import com.cool.todayheadline.bean.Cache_NewsItem;
 import com.cool.todayheadline.bean.Sys;
@@ -49,10 +51,6 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
     @Override
     protected Sys doInBackground(String... strings) {
-
-
-
-
         String url=(String)strings[0];
         Sys sys=null;
         try{
@@ -104,10 +102,19 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
             }
             new UIHelper().hideDialogForLoading();
             recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
+            if(!"头条".equals(s.getResult().getData()[0].getCategory())){
+                //开启前台通知Service
+                Intent intent=new Intent(activity.getApplication(), NewsNotificationService.class);
+                intent.putExtra("URL",s.getResult().getData()[0].getUrl());
+                intent.putExtra("title",s.getResult().getData()[0].getTitle());
+                activity.startService(intent);
+            }
+            //缓存新闻信息
             List<Cache_NewsItem> cacheNewsItems=AssemblerUtil.NewsItemToCacheTable(newsItemList);
             for(Cache_NewsItem cacheNewsItem:cacheNewsItems){
                 PreferenceNewsUtil.cache_insertNews(cacheNewsItem);
             }
+
         }
     }
 }

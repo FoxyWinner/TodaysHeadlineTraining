@@ -36,6 +36,12 @@
             android:name=".activities.InfoActivity"
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <service
+            android:name=".Services.NewsNotificationService"
+            android:enabled="true"
+            android:exported="true">
+
+        </service>
     </application>
 
 </manifest>

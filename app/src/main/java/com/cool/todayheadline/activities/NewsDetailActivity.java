@@ -1,5 +1,6 @@
 package com.cool.todayheadline.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cool.todayheadline.R;
+import com.cool.todayheadline.Services.NewsNotificationService;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.utils.AssemblerUtil;
 import com.cool.todayheadline.utils.Const;
@@ -104,6 +106,10 @@ public class NewsDetailActivity extends AppCompatActivity
         if(bundle!=null)
         {
             mNewsWebView.loadUrl((String) bundle.get(Const.PARAM_URL));
+        }else{
+            mNewsWebView.loadUrl(Const.REAL_URL);
+            Intent intent=new Intent(getApplication(), NewsNotificationService.class);
+            stopService(intent);
         }
 
 
