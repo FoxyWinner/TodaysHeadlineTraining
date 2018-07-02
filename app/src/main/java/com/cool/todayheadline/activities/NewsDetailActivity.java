@@ -3,7 +3,6 @@ package com.cool.todayheadline.activities;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -29,13 +28,23 @@ public class NewsDetailActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
 
-        ActionBar actionBar=getSupportActionBar();
-        if(actionBar!=null){
-            actionBar.hide();
-        }
 
+        //set toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//返回
+            }
+        });
+
+        //todo:如何改变toolbar title的内容？
+//        CommonUtil.addMiddleTitle(this,"新闻详情",mToolbar);
+
 
 
 
@@ -82,6 +91,7 @@ public class NewsDetailActivity extends AppCompatActivity
         {
             mNewsWebView.loadUrl((String) bundle.get(PARAM_URL));
         }
+
 
 
     }

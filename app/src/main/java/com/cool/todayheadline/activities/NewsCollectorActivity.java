@@ -1,11 +1,8 @@
 package com.cool.todayheadline.activities;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,17 +30,7 @@ public class NewsCollectorActivity extends AppCompatActivity{
         setContentView(R.layout.activity_news_collector);
         Context context = this;
 
-        ActionBar actionBar=getSupportActionBar();
-        if(actionBar!=null){
-            Resources resources = this.getResources();
-            Drawable bgColorDrawable = resources.getDrawable(R.drawable.news_detail_bar_bg);
-            actionBar.setBackgroundDrawable(bgColorDrawable);
-            actionBar.setTitle("我的收藏");
 
-//            actionBar.setLogo(R.mipmap.ic_app_logo);
-//            actionBar.setDisplayUseLogoEnabled(true);
-//            actionBar.setDisplayShowHomeEnabled(true);
-        }
 
 
         RecyclerView recyclerView = findViewById(R.id.list);
