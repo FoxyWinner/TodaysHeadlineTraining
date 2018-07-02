@@ -24,9 +24,9 @@ public class ImageAdapter extends BaseAdapter {
         this.context = context;
 
     }
-    private Integer[] mPics  = {R.mipmap.shehui_pic,R.mipmap.guonei_pic,R.mipmap.guoji_pic,
-            R.mipmap.yule_pic, R.mipmap.tiyu_pic, R.mipmap.junshi_pic, R.mipmap.keji_pic ,
-            R.mipmap.caijing_pic, R.mipmap.shishang_pic};
+    private Integer[] mPics  = {R.mipmap.grid_shehui_pic,R.mipmap.grid_guonei_pic,R.mipmap.grid_guoji_pic,
+            R.mipmap.grid_yule_pic, R.mipmap.grid_tiyu_pic, R.mipmap.grid_junshi_pic, R.mipmap.grid_keji_pic,
+            R.mipmap.grid_caijing_pic, R.mipmap.grid_shishang_pic};
 
     private Integer[] pNames = {R.string.p_name1, R.string.p_name2,R.string.p_name3, R.string.p_name4,
             R.string.p_name5, R.string.p_name6, R.string.p_name7, R.string.p_name8, R.string.p_name9,};

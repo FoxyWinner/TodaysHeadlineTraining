@@ -19,7 +19,7 @@
         >
 
         <ImageView
-            android:background="@drawable/image_bg"
+            android:background="@drawable/activity_settings_portrait_border"
             android:padding="2dp"
             android:id="@+id/iv_userphoto"
             android:layout_width="64dp"

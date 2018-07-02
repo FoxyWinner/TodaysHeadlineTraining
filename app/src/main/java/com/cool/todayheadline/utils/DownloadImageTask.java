@@ -55,7 +55,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
             }
         }else
         {
-            Log.d(TAG, "doInBackground: 使用缓存加载图片");
+//            Log.d(TAG, "doInBackground: 使用缓存加载图片");
         }
         return bitmap;
     }

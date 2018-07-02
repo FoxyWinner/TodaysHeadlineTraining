@@ -1,5 +1,6 @@
 package com.cool.todayheadline.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,21 +27,20 @@ import com.cool.todayheadline.utils.HttpThread;
 
 
 public class LoginFragment extends Fragment {
-    private AlertDialog alertDialog;
 
 
+    private OnFragmentInteractionListener mListener;
 
-    // UI references.
     private EditText mUsername;
     private String url ="http://happymmall.houjunjie.site/user/login.do?";
     private EditText mPassword;
     private int status;
     private TextView textView;
     private int id;
-
     private ImageView backButton;
     private TextView response;
     private TextView jump;
+
     private Handler handler = new Handler();
 
     @Override
@@ -60,9 +60,10 @@ public class LoginFragment extends Fragment {
         jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                Fragment registerFra = new RegisterFragment();
-                fragmentManager.beginTransaction().replace(R.id.login_layout, registerFra).commit();
+                mListener.onFragmentInteraction();
+//                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                Fragment registerFra = new RegisterFragment();
+//                fragmentManager.beginTransaction().replace(R.id.login_layout, registerFra).commit();
 
             }
         });
@@ -81,7 +82,6 @@ public class LoginFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   Log.e("flag的值是","trtrtrtr");
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("确认放弃登录?");
                 builder.setPositiveButton("放弃", new DialogInterface.OnClickListener() {
@@ -138,12 +138,37 @@ public class LoginFragment extends Fragment {
                     mUsername.setText("");
                     Toast.makeText(getActivity(),"您输入的信息有误",Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
         return view;
     }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener)
+        {
+            mListener = (OnFragmentInteractionListener) context;
+        }
+        else
+        {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mListener = null;
+    }
+    public interface OnFragmentInteractionListener
+    {
+        void onFragmentInteraction();
+    }
+
 
 
 }

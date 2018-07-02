@@ -47,12 +47,12 @@ public class MonitorEditText implements TextWatcher {
         for (int i = 0; i < text.length; i++) {
 
             if (text[i].length() == 0) {
-                button.setBackgroundResource(R.drawable.login_btn);
+                button.setBackgroundResource(R.drawable.login_btn_unclickable);
                 button.setEnabled(false);
                 return;//这句代码值两千万
             } else {
 
-                button.setBackgroundResource(R.drawable.login_btn2);
+                button.setBackgroundResource(R.drawable.login_btn_clickable);
                 button.setEnabled(true);
 
             }
