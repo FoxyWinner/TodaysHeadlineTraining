@@ -15,63 +15,63 @@ import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 {
-        private ImageView bmImage;
-        private static final String TAG = "DownloadImageTask";
-        private Context mContext;
-        private String urldisplay;
+    private ImageView bmImage;
+    private static final String TAG = "DownloadImageTask";
+    private Context mContext;
+    private String urldisplay;
 
-        public DownloadImageTask(ImageView bmImage,Context mContext)
-        {
+    public DownloadImageTask(ImageView bmImage, Context mContext)
+    {
         this.bmImage = bmImage;
         this.mContext = mContext;
-        }
+    }
 
-        protected Bitmap doInBackground(String... urls)
+    protected Bitmap doInBackground(String... urls)
+    {
+        urldisplay = urls[0];
+        //尝试从缓存中取出bitmap
+        ImgCacheUtil.initDiskLruCache(mContext, "CacheDir");
+        Bitmap bitmap = ImgCacheUtil.getCache(urldisplay);
+
+        if (bitmap == null)
         {
-                urldisplay = urls[0];
-                //尝试从缓存中取出bitmap
-                ImgCacheUtil.initDiskLruCache(mContext, "CacheDir");
-                Bitmap bitmap = ImgCacheUtil.getCache(urldisplay);
+            try
+            {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                bitmap = BitmapFactory.decodeStream(in);
 
-                if (bitmap == null)
-                {
-                        try
-                        {
-                                InputStream in = new java.net.URL(urldisplay).openStream();
+                //这个地方不能直接拿bitmap进行缓存（牵扯到DiskLruCache的实现），
+                // 然而inputstream也的确不能重复读写直接
+                //然而我们又不想拿到两次网络输入流，就直接把bitmap转化为InputStream吧
+                ImgCacheUtil.cacheImage(CommonUtil.convertBitmapToIS(bitmap), urldisplay);
 
-                                ImgCacheUtil.cacheImage(in, urldisplay);
-
-                                //这个地方能不能直接拿bitmap进行缓存
-                                InputStream in2 = new java.net.URL(urldisplay).openStream();
-                                bitmap = BitmapFactory.decodeStream(in2);
-
-                        } catch (Exception e)
-                        {
-                                Log.e("Error", e.getMessage());
-                                e.printStackTrace();
-                        }
-                }
-
-                return bitmap;
+                in.close();
+            } catch (Exception e)
+            {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
         }
+        return bitmap;
+    }
 
-        protected void onPostExecute(Bitmap result)
+    protected void onPostExecute(Bitmap result)
+    {
+
+        super.onPostExecute(result);
+        if (result == null || result.equals(""))
+        {
+            result = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.img_loading_fail);
+            bmImage.setImageBitmap(result);
+        }
+        else
         {
 
-                super.onPostExecute(result);
-                if (result == null || result.equals("")) {
-                        result = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.img_loading_fail);
-                        bmImage.setImageBitmap(result);
-                }
-                else
-                {
-
-                        //todo:为什么在模拟器上会图片缩小
-                        bmImage.setImageBitmap(result);
-                }
-
+            //todo:为什么在模拟器上会图片缩小
+            bmImage.setImageBitmap(result);
         }
 
+    }
 
 
 }

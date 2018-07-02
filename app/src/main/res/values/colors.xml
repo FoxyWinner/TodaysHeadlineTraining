@@ -7,12 +7,17 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="transparent">#00ffffff</color>
-    <color name="loading_bg">#92000000</color>
+
+    <color name="loading_bg">#EEEEF3</color>
+    <color name="loading_stroke">#87878a</color>
+
 
     <color name="textColor">#FFFFFF</color>
     <color name="bgColor">#EEEEF3</color>
 
     <color name="author_tx_color">#87878a</color>
+
+
 
 
 </resources>

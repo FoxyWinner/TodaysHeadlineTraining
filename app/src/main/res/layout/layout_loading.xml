@@ -14,7 +14,7 @@
             style="@style/AVLoadingIndicatorView"
             android:visibility="visible"
             app:indicatorColor="@color/colorPrimary"
-            app:indicatorName="PacmanIndicator"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
 
             />
         <TextView

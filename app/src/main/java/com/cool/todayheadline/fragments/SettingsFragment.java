@@ -17,7 +17,9 @@ import com.cool.todayheadline.activities.InfoActivity;
 import com.cool.todayheadline.activities.LoginActivity;
 import com.cool.todayheadline.activities.NewsCollectorActivity;
 import com.cool.todayheadline.utils.Const;
+import com.cool.todayheadline.utils.ImgCacheUtil;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
+import com.cool.todayheadline.utils.UIHelper;
 
 public class SettingsFragment extends Fragment
 {
@@ -103,8 +105,16 @@ public class SettingsFragment extends Fragment
         clearCache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!new UIHelper().isShowing())
+                {
+                    new UIHelper().showDialogForLoading(getActivity(), "正在清理", true);
+                }
                 PreferenceNewsUtil.deleteUserAllNews(Const.USER_ID+"");
                 PreferenceNewsUtil.cache_deleteAllNews();
+                ImgCacheUtil.deleteCache();
+
+                new UIHelper().hideDialogForLoading();
+
                 Toast.makeText(getActivity(),"清理完成",Toast.LENGTH_SHORT).show();
             }
         });

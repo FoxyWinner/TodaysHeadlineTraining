@@ -64,6 +64,7 @@ public class ImgCacheUtil
                 DiskLruCache.Editor editor = diskLruCache.edit(key);
                 if (editor != null)
                 {
+
                     OutputStream outputStream = editor.newOutputStream(0);
                     BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
                     int b;
@@ -145,4 +146,21 @@ public class ImgCacheUtil
         }
         return null;
     }
+
+    /**
+     * 清空Image缓存，在点击“清空缓存”按钮时调用
+     */
+    public static void deleteCache() {
+        try
+        {
+            if(!(diskLruCache == null || diskLruCache.isClosed()))
+            {
+                //delete()方法内部会调用close()
+                diskLruCache.delete();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
