@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
 import com.cool.todayheadline.bean.Cache_NewsItem;
@@ -73,21 +74,24 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     @Override
     protected void onPostExecute(Sys s) {
         super.onPostExecute(s);
+
         if (s==null||"".equals(s.toString()))
         {
-            Log.w("ContentFragment","进入result查询失败分支");
-            Snackbar sb = Snackbar.make(recyclerView, "连接服务器失败，无数据", Snackbar.LENGTH_LONG);
-            sb .setAction("确定", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
-            sb.show();
+            Toast.makeText(activity,"连接服务器失败，这是缓存数据",Toast.LENGTH_SHORT).show();
             List<Cache_NewsItem> cacheNewsItems=PreferenceNewsUtil.cache_findAllNews();
             if(cacheNewsItems!=null){
                 List<NewsItem> newsItemList=AssemblerUtil.CacheTableTONewsItem(cacheNewsItems);
                 new UIHelper().hideDialogForLoading();
                 recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
+                Snackbar sb = Snackbar.make(recyclerView, "连接服务器失败，这是缓存数据", Snackbar.LENGTH_LONG);
+                sb .setAction("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                });
+                sb.show();
+            }else{
+                Toast.makeText(activity,"连接服务器失败,并且无缓存数据",Toast.LENGTH_SHORT).show();
             }
         }
         else {
