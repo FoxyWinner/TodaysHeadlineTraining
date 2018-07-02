@@ -6,17 +6,9 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
 
-    android:background="#F9F9F9"
+    android:background="@color/login_bg"
     >
 
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
     <LinearLayout
 
         android:orientation="vertical"
@@ -71,7 +63,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/activity_login_edittext_bg"
                 android:hint="@string/prompt_email" />
 
             <EditText
@@ -81,7 +73,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/activity_login_edittext_bg"
                 android:hint="邮箱"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
@@ -99,7 +91,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/activity_login_edittext_bg"
                 android:hint="@string/prompt_password"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
@@ -117,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/login_btn"
+                android:background="@drawable/login_btn_unclickable"
                 android:text="注册"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
@@ -136,11 +128,9 @@
                     android:layout_height="match_parent" />
             <TextView
                 android:id="@+id/reg_tv"
-
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
 
  />
 

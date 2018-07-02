@@ -1,22 +1,19 @@
 package com.cool.todayheadline.activities;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.adapters.MyCollectorItemRecyclerViewAdapter;
 import com.cool.todayheadline.bean.NewsItem_table;
-import com.cool.todayheadline.fragments.HomeFragment;
 import com.cool.todayheadline.utils.AssemblerUtil;
 import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
@@ -25,7 +22,7 @@ import com.cool.todayheadline.vo.NewsItem;
 import java.util.List;
 
 public class NewsCollectorActivity extends AppCompatActivity{
-    private HomeFragment.OnListFragmentInteractionListener mListener;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,17 +30,18 @@ public class NewsCollectorActivity extends AppCompatActivity{
         setContentView(R.layout.activity_news_collector);
         Context context = this;
 
-        ActionBar actionBar=getSupportActionBar();
-        if(actionBar!=null){
-            Resources resources = this.getResources();
-            Drawable bgColorDrawable = resources.getDrawable(R.drawable.news_detail_bar_bg);
-            actionBar.setBackgroundDrawable(bgColorDrawable);
-            actionBar.setTitle("我的收藏");
+        //set toolbar
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//            actionBar.setLogo(R.mipmap.ic_app_logo);
-//            actionBar.setDisplayUseLogoEnabled(true);
-//            actionBar.setDisplayShowHomeEnabled(true);
-        }
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//返回
+            }
+        });
 
 
         RecyclerView recyclerView = findViewById(R.id.list);
@@ -54,7 +52,7 @@ public class NewsCollectorActivity extends AppCompatActivity{
 
         List<NewsItem_table> newsItem_tables= PreferenceNewsUtil.findAllNews(Const.USER_ID+"");
         List<NewsItem> newsItemList= AssemblerUtil.tableToNews(newsItem_tables);
-        recyclerView.setAdapter(new MyCollectorItemRecyclerViewAdapter(context,recyclerView,newsItemList, mListener));
+        recyclerView.setAdapter(new MyCollectorItemRecyclerViewAdapter(context,recyclerView,newsItemList));
 
     }
 

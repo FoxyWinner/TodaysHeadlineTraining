@@ -1,11 +1,14 @@
 package com.cool.todayheadline.activities;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.fragments.LoginFragment;
@@ -16,17 +19,21 @@ import java.util.ArrayList;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity  implements LoginFragment.OnFragmentInteractionListener{
 
 
 // UI references.
 
     private ViewPager viewPager;
     private FragmentPagerAdapter mAdapter;
+    private TextView jump;
+
+
     //   private List<Fragment> mFragments;
-    private Fragment loginFragment;
-    private Fragment registerFragment;
+    private LoginFragment loginFragment;
+    private RegisterFragment registerFragment;
     ArrayList<Fragment> mFragments=new ArrayList<Fragment>();
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +44,11 @@ public class LoginActivity extends AppCompatActivity  {
         }
 
         findViewById();
-
-
-
     }
     private void findViewById(){
         viewPager=(ViewPager) findViewById(R.id.id_viewpager);
         initFragment();
+
     }
     private void initFragment(){
 
@@ -92,8 +97,11 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
 
-
-
+    @Override
+    public void onFragmentInteraction()
+    {
+        viewPager.setCurrentItem(1);
+    }
 
 
 }

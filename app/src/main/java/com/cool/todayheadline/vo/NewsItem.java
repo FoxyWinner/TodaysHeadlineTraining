@@ -1,6 +1,8 @@
 package com.cool.todayheadline.vo;
 
-public class NewsItem
+import java.io.Serializable;
+
+public class NewsItem implements Serializable
 {
     private String id;
     private String category;

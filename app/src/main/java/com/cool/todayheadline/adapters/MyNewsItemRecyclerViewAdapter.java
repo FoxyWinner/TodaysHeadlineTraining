@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.cool.todayheadline.R;
 import com.cool.todayheadline.activities.NewsDetailActivity;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.utils.AssemblerUtil;
+import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.DownloadImageTask;
 import com.cool.todayheadline.utils.PreferenceNewsUtil;
 import com.cool.todayheadline.utils.TSnackBarUtil;
@@ -28,8 +30,6 @@ import java.util.List;
 
 public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsItemRecyclerViewAdapter.ViewHolder>
 {
-    private static String PARAM_URL = "NEWS_DETAIL_URL";
-
     private RecyclerView recyclerView;
     private final List<NewsItem> mValues;
     private static final String TAG = "MyNewsItemRecyclerViewA";
@@ -72,7 +72,8 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         Drawable loadingImg = resources.getDrawable(R.mipmap.img_loading);
         holder.mImageView.setImageDrawable(loadingImg);
 
-        new DownloadImageTask(holder.mImageView,mActivityContext).execute(mValues.get(position).getPic_url());
+        //利用线程池执行方式执行，但线程池满之后仍然需要等待。
+        new DownloadImageTask(holder.mImageView,mActivityContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mValues.get(position).getPic_url());
 
 
         //为整个item设置点击事件
@@ -86,8 +87,12 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                 Intent intent = new Intent();
                 Bundle bundle=new Bundle();
                 intent.setClass(mActivityContext, NewsDetailActivity.class);
-                bundle.putString(PARAM_URL, holder.mItem.getUrl());
+                bundle.putString(Const.PARAM_URL, holder.mItem.getUrl());
+
                 intent.putExtras(bundle);
+                intent.putExtra(Const.PARAM_VO,holder.mItem);
+
+
                 mActivityContext.startActivity(intent);
             }
         });
@@ -118,8 +123,6 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                     TSnackBarUtil.showTBar(recyclerView," 收藏失败，请检查是否重复收藏");
                 }
                 holder.mView.smoothClose();
-
-
             }
         });
     }

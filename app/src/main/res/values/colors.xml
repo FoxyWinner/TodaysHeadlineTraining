@@ -17,6 +17,11 @@
 
     <color name="author_tx_color">#87878a</color>
 
+    <color name="bar_bg">#464646</color>
+
+    <color name="login_bg">#F9F9F9</color>
+    <color name="login_ic_bg">#FEFFFF</color>
+
 
 
 

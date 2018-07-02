@@ -5,11 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.NewsDetailActivity">
-    <WebView
-        android:id="@+id/news_detail_wv"
+    tools:context=".activities.NewsDetailActivity"
+    >
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </WebView>
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bar_bg"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="289dp"
+        tools:ignore="MissingConstraints">
+
+        <WebView
+            android:id="@+id/news_detail_wv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </WebView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/news_detail_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            app:backgroundTint="@color/bgColor"
+            app:srcCompat="@drawable/ic_favorite_pink_24dp"
+            tools:ignore="VectorDrawableCompat"/>
+    </FrameLayout>
+
 
 </android.support.constraint.ConstraintLayout>
