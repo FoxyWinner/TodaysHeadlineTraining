@@ -3,7 +3,6 @@ package com.cool.todayheadline.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.jakewharton.disklrucache.DiskLruCache;
 
@@ -135,9 +134,7 @@ public class ImgCacheUtil
             DiskLruCache.Snapshot snapshot = diskLruCache.get(key);
             if (snapshot != null)
             {
-                Log.d(TAG, "getCache: 进入到了snapshot != null");
                 InputStream in = snapshot.getInputStream(0);
-
                 bitmap = BitmapFactory.decodeStream(in);
                 return bitmap;
             }

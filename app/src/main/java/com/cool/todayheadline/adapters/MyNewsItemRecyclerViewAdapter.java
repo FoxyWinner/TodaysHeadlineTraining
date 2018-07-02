@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,7 +73,8 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         Drawable loadingImg = resources.getDrawable(R.mipmap.img_loading);
         holder.mImageView.setImageDrawable(loadingImg);
 
-        new DownloadImageTask(holder.mImageView,mActivityContext).execute(mValues.get(position).getPic_url());
+        //利用线程池执行方式执行，但线程池满之后仍然需要等待。
+        new DownloadImageTask(holder.mImageView,mActivityContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mValues.get(position).getPic_url());
 
 
         //为整个item设置点击事件

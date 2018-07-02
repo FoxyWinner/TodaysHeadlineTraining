@@ -3,6 +3,7 @@ package com.cool.todayheadline.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
@@ -33,6 +34,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         ImgCacheUtil.initDiskLruCache(mContext, "CacheDir");
         Bitmap bitmap = ImgCacheUtil.getCache(urldisplay);
 
+
         if (bitmap == null)
         {
             try
@@ -44,13 +46,16 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
                 // 然而inputstream也的确不能重复读写直接
                 //然而我们又不想拿到两次网络输入流，就直接把bitmap转化为InputStream吧
                 ImgCacheUtil.cacheImage(CommonUtil.convertBitmapToIS(bitmap), urldisplay);
-
                 in.close();
+
             } catch (Exception e)
             {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
+        }else
+        {
+            Log.d(TAG, "doInBackground: 使用缓存加载图片");
         }
         return bitmap;
     }
@@ -66,11 +71,30 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         }
         else
         {
-
-            //todo:为什么在模拟器上会图片缩小
+//            Drawable drawable = new BitmapDrawable(result);
+//            bmImage.setImageDrawable(drawable);
             bmImage.setImageBitmap(result);
         }
 
+    }
+
+    /**
+     * @param bitmap 对象
+     * @param w 要缩放的宽度
+     * @param h 要缩放的高度
+     * @return newBmp 新 Bitmap对象
+     */
+    public static Bitmap zoomBitmap(Bitmap bitmap, int w, int h)
+    {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Matrix matrix = new Matrix();
+        float scaleWidth = ((float) w / width);
+        float scaleHeight = ((float) h / height);
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap newBmp = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+                matrix, true);
+        return newBmp;
     }
 
 
