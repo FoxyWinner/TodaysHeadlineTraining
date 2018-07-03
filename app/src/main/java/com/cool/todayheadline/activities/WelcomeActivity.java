@@ -104,4 +104,11 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        Const.HAS_JUMP=true;
+    }
 }

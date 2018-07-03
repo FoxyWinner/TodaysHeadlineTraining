@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment
         //判断预加载数据是否成功，若成功，直接使用预加载数据，不成功则DownloadTask
 
         newsItemList = (List<NewsItem>) getActivity().getIntent().getSerializableExtra(Const.NEWS_ITEM_LIST);
-        if(newsItemList != null)
+        if(newsItemList != null && newsItemList.size()>0)
         {
             //直接把预加载数据填充进去
             Log.d(TAG, "onCreateView: 使用了预加载数据");

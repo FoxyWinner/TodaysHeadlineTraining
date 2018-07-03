@@ -3,6 +3,7 @@ package com.cool.todayheadline.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.jakewharton.disklrucache.DiskLruCache;
 
@@ -129,19 +130,29 @@ public class ImgCacheUtil
     public static Bitmap getCache(String imgUrl)
     {
         Bitmap bitmap;
-        try {
-            String key = hashKeyForDisk(imgUrl);
-            DiskLruCache.Snapshot snapshot = diskLruCache.get(key);
-            if (snapshot != null)
+        DiskLruCache.Snapshot snapshot = isCached(imgUrl);
+        if (snapshot != null)
             {
                 InputStream in = snapshot.getInputStream(0);
                 bitmap = BitmapFactory.decodeStream(in);
                 return bitmap;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return null;
+    }
+
+    public static DiskLruCache.Snapshot isCached(String imgUrl)
+    {
+        String key = hashKeyForDisk(imgUrl);
+        DiskLruCache.Snapshot snapshot = null;
+        try
+        {
+            snapshot = diskLruCache.get(key);
+        } catch (IOException e)
+        {
+            Log.e(TAG, "isCached: ",e );
+        }
+        if (snapshot != null) return snapshot;
+        else return null;
     }
 
     /**

@@ -23,6 +23,9 @@ public class Const
     //DiskLruCache缓冲池大小
     public static long CACHE_MAX_SIZE =  10 * 1024 * 1024;//10MB;
 
+    //已经跳转，提示异步任务可以结束了
+    public static boolean HAS_JUMP = false;
+
 
 
 
