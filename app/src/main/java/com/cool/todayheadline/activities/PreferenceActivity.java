@@ -1,7 +1,9 @@
 package com.cool.todayheadline.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +24,8 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
 {
     private GridView    gridView;
     private ImageAdapter    adapter;
+    FavoriteFragment favoriteFragment = new FavoriteFragment();
+    private SharedPreferences sp;
 
 
     //存放欢迎页传来的数据
@@ -58,6 +62,15 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
 
 
         Intent intent = new Intent(this,MainActivity.class);
+
+        sp = getSharedPreferences("SP", Context.MODE_PRIVATE);
+
+
+
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString("Value",names[position]);
+
+        edit.commit();
 
         intent.putExtra(Const.USER_PREFERENCE,names[position]);
 
