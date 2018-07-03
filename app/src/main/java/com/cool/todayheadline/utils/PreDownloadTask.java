@@ -102,12 +102,7 @@ public class PreDownloadTask extends AsyncTask<String, Object, Sys>
 
             //缓存新闻信息
             List<Cache_NewsItem> cacheNewsItems = AssemblerUtil.NewsItemToCacheTable(newsItemList);
-            for (Cache_NewsItem cacheNewsItem : cacheNewsItems)
-            {
-                PreferenceNewsUtil.cache_insertNews(cacheNewsItem);
-            }
-
-
+            PreferenceNewsUtil.cache_inserNews(cacheNewsItems);
 
         }
     }

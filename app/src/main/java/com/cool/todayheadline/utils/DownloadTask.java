@@ -64,8 +64,6 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
             Gson g=new Gson();
             sys =g.fromJson(responseData,Sys.class);
 
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -85,13 +83,8 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 //有缓存数据时
                 List<NewsItem> newsItemList=AssemblerUtil.CacheTableTONewsItem(cacheNewsItems);
                 recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
-                Snackbar sb = Snackbar.make(recyclerView, "连接服务器失败，这是缓存数据", Snackbar.LENGTH_LONG);
-                sb .setAction("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                    }
-                });
-                sb.show();
+                new UIHelper().hideDialogForLoading();
+                Toast.makeText(activity,"连接服务器失败，这是缓存数据",Toast.LENGTH_SHORT).show();
             }else{
                 //无缓存数据
                 Toast.makeText(activity,"连接服务器失败,并且无缓存数据",Toast.LENGTH_SHORT).show();
@@ -107,7 +100,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 newsItemList.add(newsItem);
             }
             recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
-
+            new UIHelper().hideDialogForLoading();
             if(!"头条".equals(s.getResult().getData()[0].getCategory())){
                 //开启前台通知Service
                 Intent intent=new Intent(activity.getApplication(), NewsNotificationService.class);
@@ -116,15 +109,12 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 activity.startService(intent);
             }
             //缓存新闻信息
-
-            long startTime = System.currentTimeMillis();
+            long starttime=System.currentTimeMillis();
             List<Cache_NewsItem> cacheNewsItems=AssemblerUtil.NewsItemToCacheTable(newsItemList);
-            for(Cache_NewsItem cacheNewsItem:cacheNewsItems){
-                PreferenceNewsUtil.cache_insertNews(cacheNewsItem);
-            }
-            long endTime = System.currentTimeMillis();
-
-            Log.d(TAG, "onPostExecute: "+(endTime-startTime));
+            PreferenceNewsUtil.cache_inserNews(cacheNewsItems);
+            long stoptime=System.currentTimeMillis();
+            Log.d(TAG, ""+(stoptime-starttime));
+            ClearCacheThread.clearCache(s);
         }
         refreshLayout.setRefreshing(false);
     }
