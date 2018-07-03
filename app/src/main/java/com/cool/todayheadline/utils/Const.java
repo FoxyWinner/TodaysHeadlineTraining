@@ -11,7 +11,9 @@ public class Const
 
     public static String PARAM_URL = "NEWS_DETAIL_URL";
     public static String PARAM_VO = "NEWS_DETAIL_VO";
-    public static String REAL_URL="NEWS_DETAIL_URL";
+
+    //直接存URL
+    public static String REAL_URL="";
 
 
     public static  int EMAIL = 1;

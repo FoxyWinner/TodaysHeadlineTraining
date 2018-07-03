@@ -75,11 +75,8 @@ public class NewsDetailActivity extends AppCompatActivity
         });
 
         mNewsWebView = findViewById(R.id.news_detail_wv);
-
         //允许JS加载，垃圾广告全出来了
         mNewsWebView.getSettings().setJavaScriptEnabled(true);
-
-
         mNewsWebView.setWebViewClient(new WebViewClient(){
             public void onPageStarted(WebView view, String url, Bitmap favicon)
             {
@@ -101,12 +98,13 @@ public class NewsDetailActivity extends AppCompatActivity
 
 
 
-        Bundle bundle = this.getIntent().getExtras();
 
-        if(bundle!=null)
+        if(newsItem!=null)
         {
-            mNewsWebView.loadUrl((String) bundle.get(Const.PARAM_URL));
-        }else{
+            mNewsWebView.loadUrl(newsItem.getUrl());
+        }
+        //通过通知栏启动NewsDetail界面时，避免URL传不过来 @author 柳斌辉
+        else{
             mNewsWebView.loadUrl(Const.REAL_URL);
             Intent intent=new Intent(getApplication(), NewsNotificationService.class);
             stopService(intent);

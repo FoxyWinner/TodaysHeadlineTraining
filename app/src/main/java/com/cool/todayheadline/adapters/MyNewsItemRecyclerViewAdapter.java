@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,11 +84,8 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             public void onClick(View view)
             {
                 Intent intent = new Intent();
-                Bundle bundle=new Bundle();
                 intent.setClass(mActivityContext, NewsDetailActivity.class);
-                bundle.putString(Const.PARAM_URL, holder.mItem.getUrl());
 
-                intent.putExtras(bundle);
                 intent.putExtra(Const.PARAM_VO,holder.mItem);
 
 
