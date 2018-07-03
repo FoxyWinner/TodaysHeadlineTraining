@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -109,11 +110,18 @@ public class NewsDetailActivity extends AppCompatActivity
             Intent intent=new Intent(getApplication(), NewsNotificationService.class);
             stopService(intent);
         }
+    }
 
-
-
-
-
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 判断是否是返回键
+        if (keyCode == KeyEvent.KEYCODE_BACK && mNewsWebView.canGoBack()) {
+            // 网页是否可以返回
+            // 回退上个网页
+            mNewsWebView.goBack();
+            // 拦截返回按键事件继续传递
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

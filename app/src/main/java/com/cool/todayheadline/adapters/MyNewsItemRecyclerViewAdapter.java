@@ -85,10 +85,8 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             {
                 Intent intent = new Intent();
                 intent.setClass(mActivityContext, NewsDetailActivity.class);
-
+                //传整个NewsItem对象进去
                 intent.putExtra(Const.PARAM_VO,holder.mItem);
-
-
                 mActivityContext.startActivity(intent);
             }
         });
