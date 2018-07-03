@@ -80,7 +80,6 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 //有缓存数据时
                 List<NewsItem> newsItemList=AssemblerUtil.CacheTableTONewsItem(cacheNewsItems);
                 recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
-                new UIHelper().hideDialogForLoading();
                 Snackbar sb = Snackbar.make(recyclerView, "连接服务器失败，这是缓存数据", Snackbar.LENGTH_LONG);
                 sb .setAction("确定", new View.OnClickListener() {
                     @Override
@@ -102,8 +101,8 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 newsItem=AssemblerUtil.transform(s,i);
                 newsItemList.add(newsItem);
             }
-            new UIHelper().hideDialogForLoading();
             recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
+
             if(!"头条".equals(s.getResult().getData()[0].getCategory())){
                 //开启前台通知Service
                 Intent intent=new Intent(activity.getApplication(), NewsNotificationService.class);

@@ -46,10 +46,6 @@ public class HomeFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) //没传过数据来
-        {
-        }
     }
 
     @Override
@@ -80,8 +76,7 @@ public class HomeFragment extends Fragment
         else
         {
             String url= Info.path_queryNewsItems("");
-            String[] urls={url};
-            new DownloadTask(recyclerView,getActivity()).execute(urls);
+            new DownloadTask(recyclerView,getActivity()).execute(url);
         }
 
 
