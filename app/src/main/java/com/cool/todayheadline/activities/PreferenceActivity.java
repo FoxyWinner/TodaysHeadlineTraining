@@ -3,8 +3,6 @@ package com.cool.todayheadline.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,16 +11,21 @@ import android.widget.GridView;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.adapters.ImageAdapter;
-import com.cool.todayheadline.fragments.FavoriteFragment;
 import com.cool.todayheadline.utils.Const;
+import com.cool.todayheadline.vo.NewsItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PreferenceActivity extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
-
     private GridView    gridView;
     private ImageAdapter    adapter;
-    FavoriteFragment favoriteFragment = new FavoriteFragment();
+
+
+    //存放欢迎页传来的数据
+    private List<NewsItem> newsItemList = new ArrayList<>();
 
     private String[] names = {"shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"};
     @Override
@@ -41,7 +44,7 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
         if(actionBar!=null){
             actionBar.hide();
         }
-        handler.sendEmptyMessageDelayed(0,5000);
+
 
 
 
@@ -50,13 +53,6 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
     }
 
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-          //  getHome();
-            super.handleMessage(msg);
-        }
-    };
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -64,6 +60,10 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
         Intent intent = new Intent(this,MainActivity.class);
 
         intent.putExtra(Const.USER_PREFERENCE,names[position]);
+
+        //无需开包，直接传给下一位
+        intent.putExtras(getIntent().getExtras());
+
 
         startActivity(intent);
         finish();
