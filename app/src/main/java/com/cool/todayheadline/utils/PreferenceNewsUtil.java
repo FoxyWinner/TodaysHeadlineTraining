@@ -50,6 +50,11 @@ public class PreferenceNewsUtil {
         return list;
     }
 
+    public static List<Cache_NewsItem> cache_findNewsByUrl(String url){
+        List<Cache_NewsItem> list=LitePal.where("url=?",url).find(Cache_NewsItem.class);
+        return list;
+    }
+
     public static Boolean cache_insertNews(Cache_NewsItem cacheNewsItem){
         List<Cache_NewsItem> list=cache_findAllNews();
         for(Cache_NewsItem news:list){
