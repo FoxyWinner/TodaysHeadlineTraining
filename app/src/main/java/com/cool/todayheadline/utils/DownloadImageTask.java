@@ -34,7 +34,6 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         ImgCacheUtil.initDiskLruCache(mContext, "CacheDir");
         Bitmap bitmap = ImgCacheUtil.getCache(urldisplay);
 
-
         if (bitmap == null)
         {
             try
@@ -71,8 +70,6 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
         }
         else
         {
-//            Drawable drawable = new BitmapDrawable(result);
-//            bmImage.setImageDrawable(drawable);
             bmImage.setImageBitmap(result);
         }
 

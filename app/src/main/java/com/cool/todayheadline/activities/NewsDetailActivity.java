@@ -51,10 +51,6 @@ public class NewsDetailActivity extends AppCompatActivity
             }
         });
 
-        //todo:如何改变toolbar title的内容？
-//        CommonUtil.addMiddleTitle(this,"新闻详情",mToolbar);
-
-
         newsItem = (NewsItem) this.getIntent().getSerializableExtra(Const.PARAM_VO);
         if(newsItem==null){
             List<Cache_NewsItem> list=PreferenceNewsUtil.cache_findNewsByUrl(Const.REAL_URL);
@@ -77,7 +73,7 @@ public class NewsDetailActivity extends AppCompatActivity
 
         mNewsWebView = findViewById(R.id.news_detail_wv);
         //允许JS加载，垃圾广告全出来了
-        mNewsWebView.getSettings().setJavaScriptEnabled(true);
+//        mNewsWebView.getSettings().setJavaScriptEnabled(true);
         mNewsWebView.setWebViewClient(new WebViewClient() {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);

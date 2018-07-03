@@ -1,8 +1,11 @@
 package com.cool.todayheadline.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +35,7 @@ public class HomeFragment extends Fragment
 
     private RecyclerView recyclerView;
     private static final String TAG = "HomeFragment";
+    private SwipeRefreshLayout refreshLayout;
 
     //存放欢迎页或者PreferenceActivity传来的数据
 
@@ -48,17 +52,22 @@ public class HomeFragment extends Fragment
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_newsitem_list, container, false);
-        String userPreference = getActivity().getIntent().getStringExtra(Const.USER_PREFERENCE);
 
-        // Set the adapter
         Context context = view.getContext();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.list_refresh);
+        refreshLayout.setEnabled(false);
+        refreshLayout.setColorSchemeColors(R.color.colorPrimary);
+
+
+
         //设置分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
 
@@ -76,7 +85,7 @@ public class HomeFragment extends Fragment
         else
         {
             String url= Info.path_queryNewsItems("");
-            new DownloadTask(recyclerView,getActivity()).execute(url);
+            new DownloadTask(refreshLayout,recyclerView,getActivity()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,url);
         }
 
 

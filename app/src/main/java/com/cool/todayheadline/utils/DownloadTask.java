@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,24 +30,24 @@ import okhttp3.Response;
 
 public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
-    RecyclerView recyclerView;
-    Activity activity;
+    private RecyclerView recyclerView;
+    private SwipeRefreshLayout refreshLayout;
+    private Activity activity;
 
     private static final String TAG = "DownloadTask";
 
-    public DownloadTask(RecyclerView recyclerView,
-                        Activity activity){
-        this.recyclerView=recyclerView;
-        this.activity=activity;
+    public DownloadTask(SwipeRefreshLayout refreshLayout,RecyclerView recyclerView,
+                        Activity activity)
+    {
+        this.refreshLayout = refreshLayout;
+        this.recyclerView = recyclerView;
+        this.activity = activity;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        if(!new UIHelper().isShowing())
-        {
-            new UIHelper().showDialogForLoading(activity, "正在加载...", true);
-        }
+        refreshLayout.setRefreshing(true);
     }
 
     @Override
@@ -62,6 +64,8 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
             Gson g=new Gson();
             sys =g.fromJson(responseData,Sys.class);
 
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -69,7 +73,8 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     }
 
     @Override
-    protected void onPostExecute(Sys s) {
+    protected void onPostExecute(Sys s)
+    {
         super.onPostExecute(s);
 
         if (s==null||"".equals(s.toString()))
@@ -111,11 +116,16 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 activity.startService(intent);
             }
             //缓存新闻信息
+
+            long startTime = System.currentTimeMillis();
             List<Cache_NewsItem> cacheNewsItems=AssemblerUtil.NewsItemToCacheTable(newsItemList);
             for(Cache_NewsItem cacheNewsItem:cacheNewsItems){
                 PreferenceNewsUtil.cache_insertNews(cacheNewsItem);
             }
+            long endTime = System.currentTimeMillis();
 
+            Log.d(TAG, "onPostExecute: "+(endTime-startTime));
         }
+        refreshLayout.setRefreshing(false);
     }
 }
