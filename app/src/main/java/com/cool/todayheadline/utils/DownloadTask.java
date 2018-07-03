@@ -51,7 +51,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
     @Override
     protected Sys doInBackground(String... strings) {
-        String url=(String)strings[0];
+        String url=strings[0];
         Sys sys=null;
         try{
             OkHttpClient client=new OkHttpClient();
@@ -75,12 +75,13 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
 
         if (s==null||"".equals(s.toString()))
         {
-            Toast.makeText(activity,"连接服务器失败，这是缓存数据",Toast.LENGTH_SHORT).show();
+            //服务器连接失败
             List<Cache_NewsItem> cacheNewsItems=PreferenceNewsUtil.cache_findAllNews();
             if(cacheNewsItems!=null){
+                //有缓存数据时
                 List<NewsItem> newsItemList=AssemblerUtil.CacheTableTONewsItem(cacheNewsItems);
-                new UIHelper().hideDialogForLoading();
                 recyclerView.setAdapter(new MyNewsItemRecyclerViewAdapter(activity,recyclerView,newsItemList));
+                new UIHelper().hideDialogForLoading();
                 Snackbar sb = Snackbar.make(recyclerView, "连接服务器失败，这是缓存数据", Snackbar.LENGTH_LONG);
                 sb .setAction("确定", new View.OnClickListener() {
                     @Override
@@ -89,10 +90,12 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 });
                 sb.show();
             }else{
+                //无缓存数据
                 Toast.makeText(activity,"连接服务器失败,并且无缓存数据",Toast.LENGTH_SHORT).show();
             }
         }
         else {
+            //获取数据成功并更新UI
             int total=s.getResult().getData().length;
             List<NewsItem> newsItemList=new ArrayList<NewsItem>();
             for(int i=0;i<total;i++){

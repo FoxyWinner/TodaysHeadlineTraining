@@ -12,13 +12,20 @@ import java.util.List;
 
 /**用法：
  * 首先创建数据库：LitePal.getDatabase();
+ *              收藏夹表
  * 增加：PreferenceNewsUtil.insertNews(newsItem_table);
  * 删除：PreferenceNewsUtil.deleteNews(user,id);
  * 查询：PreferenceNewsUtil.findAllNews(user);
- *
+ * 全部删除：PreferenceNewsUtil.deleteUserAllNews(user);
+ *              缓存表
+ * 查询全部新闻：PreferenceNewsUtil.cache_findAllNews();
+ * 按url查找缓存中的新闻：PreferenceNewsUtil.cache_findNewsByUrl(String url)
+ * 增加：PreferenceNewsUtil.cache_insertNews(Cache_NewsItem cacheNewsItem)
  */
 
 public class PreferenceNewsUtil {
+
+    //对收藏夹表的操作
 
     public static boolean insertNews(NewsItem_table newsItem_table){
         List<NewsItem_table> list=findAllNews(newsItem_table.getUser());
@@ -41,9 +48,8 @@ public class PreferenceNewsUtil {
         LitePal.deleteAll(NewsItem_table.class,"user=?",user);
     }
 
-    /*
-        对缓存表进行操作
-     */
+
+    //对缓存表的操作
 
     public static List<Cache_NewsItem> cache_findAllNews(){
         List<Cache_NewsItem> list= LitePal.findAll(Cache_NewsItem.class);
