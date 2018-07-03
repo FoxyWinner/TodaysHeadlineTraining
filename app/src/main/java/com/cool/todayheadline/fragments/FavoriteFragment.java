@@ -48,7 +48,7 @@ public class FavoriteFragment extends Fragment
 
         sp = getActivity().getSharedPreferences("SP", Context.MODE_PRIVATE);
 
-        String value = sp.getString("Value","Null");
+        String value = sp.getString(Const.USER_PREFERENCE,"Null");
 
 
 

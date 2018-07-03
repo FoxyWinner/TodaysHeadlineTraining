@@ -24,7 +24,6 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
 {
     private GridView    gridView;
     private ImageAdapter    adapter;
-    FavoriteFragment favoriteFragment = new FavoriteFragment();
     private SharedPreferences sp;
 
 
@@ -68,13 +67,13 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
 
 
         SharedPreferences.Editor edit = sp.edit();
-        edit.putString("Value",names[position]);
+        edit.putString(Const.USER_PREFERENCE,names[position]);
 
         edit.commit();
 
-        intent.putExtra(Const.USER_PREFERENCE,names[position]);
 
-        //无需开包，直接传给下一位
+
+        //无需开包，直接将预加载数据传给下一位
         intent.putExtras(getIntent().getExtras());
 
 
