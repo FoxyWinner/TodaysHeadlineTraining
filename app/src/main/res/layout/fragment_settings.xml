@@ -25,7 +25,7 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/default_useravatar" />
+            android:src="@mipmap/userportrait_default" />
 
         <LinearLayout
             android:id="@+id/ll_name"

@@ -2,12 +2,15 @@ package com.cool.todayheadline.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,8 @@ public class SettingsFragment extends Fragment
     private Button exit_btn;
     private Button about_btn;
     private Button per_settings;
+    private ImageView userPortrait;
+
 
 
     public SettingsFragment()
@@ -53,6 +58,7 @@ public class SettingsFragment extends Fragment
 
 
         per_settings = view.findViewById(R.id.bt_callus);
+        userPortrait = view.findViewById(R.id.iv_userphoto);
 
         per_settings.setOnClickListener(new View.OnClickListener()
         {
@@ -98,6 +104,10 @@ public class SettingsFragment extends Fragment
         });
         if (Const.USER_ID != 0)
         {
+            Resources resources = getActivity().getResources();
+            Drawable img = resources.getDrawable(R.mipmap.userportrait);
+            userPortrait.setImageDrawable(img);
+
             exit_btn.setVisibility(View.VISIBLE);
         }
 
@@ -107,6 +117,9 @@ public class SettingsFragment extends Fragment
             public void onClick(View view)
             {
                 Const.USER_ID = 0;
+                Resources resources = getActivity().getResources();
+                Drawable img = resources.getDrawable(R.mipmap.userportrait_default);
+                userPortrait.setImageDrawable(img);
                 Toast.makeText(getActivity(), "退出登陆成功", Toast.LENGTH_LONG).show();
                 textView.setText("请登录");
                 exit_btn.setVisibility(View.INVISIBLE);
@@ -151,6 +164,7 @@ public class SettingsFragment extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
+
     }
 
     @Override
@@ -158,5 +172,4 @@ public class SettingsFragment extends Fragment
     {
         super.onDetach();
     }
-
 }

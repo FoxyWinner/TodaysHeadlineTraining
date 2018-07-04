@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     private RegisterFragment registerFragment;
     ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -83,7 +84,5 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     {
         viewPager.setCurrentItem(1);
     }
-
-
 }
 
