@@ -23,7 +23,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * 用法：new DownloadTask(recyclerView,mListener,activity).execute(urls);
+ * 用法：new DownloadTask(recyclerView,activity).execute(urls);
  */
 
 public class DownloadTask extends AsyncTask<String,Object,Sys>{
@@ -107,11 +107,8 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 activity.startService(intent);
             }
             //缓存新闻信息
-            long starttime=System.currentTimeMillis();
             List<Cache_NewsItem> cacheNewsItems=AssemblerUtil.NewsItemToCacheTable(newsItemList);
             PreferenceNewsUtil.cache_inserNews(cacheNewsItems);
-            long stoptime=System.currentTimeMillis();
-            Log.d(TAG, ""+(stoptime-starttime));
             ClearCacheThread.clearCache(s);
         }
         refreshLayout.setRefreshing(false);

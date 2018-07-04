@@ -51,6 +51,11 @@ public class PreferenceNewsUtil {
 
     //对缓存表的操作
 
+    public static List<Cache_NewsItem> cache_findAllNewsByCategory(String category){
+        List<Cache_NewsItem> list=LitePal.where("category=?",category).find(Cache_NewsItem.class);
+        return list;
+    }
+
     public static List<Cache_NewsItem> cache_findAllNews(){
         List<Cache_NewsItem> list= LitePal.findAll(Cache_NewsItem.class);
         return list;
