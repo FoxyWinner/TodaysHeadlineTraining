@@ -63,7 +63,6 @@ public class SettingsFragment extends Fragment
                 Bundle bundle = new Bundle();
                 a.putExtras(bundle);
                 startActivity(a);
-                getActivity().finish();
             }
         });
 

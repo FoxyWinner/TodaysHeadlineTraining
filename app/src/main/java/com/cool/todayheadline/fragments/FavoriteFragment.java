@@ -22,7 +22,6 @@ import com.cool.todayheadline.utils.Info;
 
 public class FavoriteFragment extends Fragment
 {
-    private HomeFragment.OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
     private SharedPreferences sharedPreferences;
     private SwipeRefreshLayout refreshLayout;
