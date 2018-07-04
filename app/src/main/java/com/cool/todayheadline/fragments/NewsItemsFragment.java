@@ -24,32 +24,39 @@ import com.cool.todayheadline.vo.NewsItem;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
-public class HomeFragment extends Fragment
+public class NewsItemsFragment extends Fragment
 {
 
     private RecyclerView recyclerView;
-    private static final String TAG = "HomeFragment";
+    private static final String TAG = "NewsItemsFragment";
     private SwipeRefreshLayout refreshLayout;
+    private String userPreference;
 
     //存放欢迎页或者PreferenceActivity传来的数据
 
     private List<NewsItem> newsItemList = new ArrayList<>();
 
-    public HomeFragment()
+    public NewsItemsFragment()
     {
     }
 
+    public static NewsItemsFragment newInstance(String userPreference)
+    {
+        NewsItemsFragment fragment = new NewsItemsFragment();
+        Bundle args = new Bundle();
+        args.putString(Const.USER_PREFERENCE, userPreference);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null)
+        {
+            userPreference = getArguments().getString(Const.USER_PREFERENCE);
+        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -76,7 +83,7 @@ public class HomeFragment extends Fragment
         //判断预加载数据是否成功，若成功，直接使用预加载数据，不成功则DownloadTask
 
         newsItemList = (List<NewsItem>) getActivity().getIntent().getSerializableExtra(Const.NEWS_ITEM_LIST);
-        if(newsItemList != null && newsItemList.size()>0)
+        if(newsItemList != null && newsItemList.size()>0 && "".equals(userPreference))
         {
             //直接把预加载数据填充进去
             Log.d(TAG, "onCreateView: 使用了预加载数据");
@@ -84,7 +91,8 @@ public class HomeFragment extends Fragment
         }
         else
         {
-            String url= Info.path_queryNewsItems("");
+            String url= Info.path_queryNewsItems(userPreference);
+            Log.d(TAG, "onCreateView: "+userPreference);
             new DownloadTask(refreshLayout,recyclerView,getActivity()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,url);
         }
 

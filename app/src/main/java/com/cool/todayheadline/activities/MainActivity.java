@@ -1,19 +1,22 @@
 package com.cool.todayheadline.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
 import com.cool.todayheadline.extend.NoSlidingViewPaper;
-import com.cool.todayheadline.fragments.FavoriteFragment;
-import com.cool.todayheadline.fragments.HomeFragment;
+import com.cool.todayheadline.fragments.NewsItemsFragment;
 import com.cool.todayheadline.fragments.SettingsFragment;
+import com.cool.todayheadline.utils.Const;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity
     private NoSlidingViewPaper mpager;
     private MainActivityViewPagerAdapter mainActivityViewPagerAdapter;
     private BottomNavigationView mNavigation;
+    private String userPreference;
+    private static final String TAG = "MainActivity";
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener()
@@ -79,9 +85,14 @@ public class MainActivity extends AppCompatActivity
 
         mainActivityViewPagerAdapter = new MainActivityViewPagerAdapter(getSupportFragmentManager());
 
+        SharedPreferences sharedPreferences = this.getSharedPreferences(Const.SP_USER_PREFERENCE, Context.MODE_PRIVATE);
+        userPreference = sharedPreferences.getString(Const.USER_PREFERENCE, "Null");
+
+        Log.d(TAG, "init:userPreference "+userPreference);
+
 //        为Adapter添加Fragment
-        mainActivityViewPagerAdapter.addFragment(new HomeFragment());
-        mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
+        mainActivityViewPagerAdapter.addFragment(NewsItemsFragment.newInstance(""));
+        mainActivityViewPagerAdapter.addFragment(NewsItemsFragment.newInstance(userPreference));
         mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
     }

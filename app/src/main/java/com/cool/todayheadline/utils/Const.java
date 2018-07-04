@@ -3,13 +3,13 @@ package com.cool.todayheadline.utils;
 public class Const
 {
     public static final String USER_PREFERENCE = "preference";
+    public static String SP_USER_PREFERENCE = "SP_USER_PREFERENCE";
     public static String USER_NAME="请登录";
 
     //该参数默认为0，即本地用户，登陆后该参数会改变为UserId
     public static int USER_ID = 0;
 
 
-    public static String SP_USER_PREFEREBCE = "SP_USER_PREFEREBCE";
     public static String PARAM_VO = "NEWS_DETAIL_VO";
     public static String NEWS_ITEM_LIST = "NEWS_ITEM_LIST";
 

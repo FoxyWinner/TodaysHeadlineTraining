@@ -60,7 +60,7 @@ public class PreferenceActivity extends AppCompatActivity implements AdapterView
     {
         Intent intent = new Intent(this, MainActivity.class);
 
-        sharedPreferences = getSharedPreferences(Const.SP_USER_PREFEREBCE, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Const.SP_USER_PREFERENCE, Context.MODE_PRIVATE);
 
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString(Const.USER_PREFERENCE, names[position]);
