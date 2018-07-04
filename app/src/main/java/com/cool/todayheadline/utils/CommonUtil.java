@@ -29,4 +29,63 @@ public class CommonUtil
         toolbar.addView(textView, params);
 
     }
+
+    public static String SpellToHanzi(String spell)
+    {
+        String hanzi="";
+        switch (spell)
+        {
+            case "":
+            {
+                hanzi="头条";
+                break;
+            }
+            case "shehui":
+            {
+                hanzi="社会";
+                break;
+            }
+            case "guonei":
+            {
+                hanzi="国内";
+                break;
+            }
+            case "guoji":
+            {
+                hanzi="国际";
+                break;
+            }
+            case "yule":
+            {
+                hanzi="娱乐";
+                break;
+            }
+            case "tiyu":
+            {
+                hanzi="体育";
+                break;
+            }
+            case "junshi":
+            {
+                hanzi="军事";
+                break;
+            }
+            case "keji":
+            {
+                hanzi="科技";
+                break;
+            }
+            case "caijing":
+            {
+                hanzi="财经";
+                break;
+            }
+            case "shishang":
+            {
+                hanzi="时尚";
+                break;
+            }
+        }
+        return hanzi;
+    }
 }

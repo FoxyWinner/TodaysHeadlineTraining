@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.cool.todayheadline.R;
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
+import com.cool.todayheadline.utils.CommonUtil;
 import com.cool.todayheadline.utils.Const;
 import com.cool.todayheadline.utils.DownloadTask;
 import com.cool.todayheadline.utils.Info;
@@ -93,7 +94,7 @@ public class NewsItemsFragment extends Fragment
         {
             String url= Info.path_queryNewsItems(userPreference);
             Log.d(TAG, "onCreateView: "+userPreference);
-            new DownloadTask(refreshLayout,recyclerView,getActivity()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,url);
+            new DownloadTask(refreshLayout,recyclerView,getActivity(), CommonUtil.SpellToHanzi(userPreference)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,url);
         }
 
 

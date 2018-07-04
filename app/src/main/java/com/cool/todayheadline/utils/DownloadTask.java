@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
@@ -31,15 +30,17 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private Activity activity;
+    private String categroy;
 
     private static final String TAG = "DownloadTask";
 
     public DownloadTask(SwipeRefreshLayout refreshLayout,RecyclerView recyclerView,
-                        Activity activity)
+                        Activity activity,String categroy)
     {
         this.refreshLayout = refreshLayout;
         this.recyclerView = recyclerView;
         this.activity = activity;
+        this.categroy = categroy;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
         if (s==null||"".equals(s.toString()))
         {
             //服务器连接失败
-            List<Cache_NewsItem> cacheNewsItems=PreferenceNewsUtil.cache_findAllNews();
+            List<Cache_NewsItem> cacheNewsItems=PreferenceNewsUtil.cache_findAllNewsByCategory(categroy);
             if(cacheNewsItems!=null){
                 //有缓存数据时
                 List<NewsItem> newsItemList=AssemblerUtil.CacheTableTONewsItem(cacheNewsItems);
