@@ -15,8 +15,6 @@ import com.cool.todayheadline.fragments.FavoriteFragment;
 import com.cool.todayheadline.fragments.HomeFragment;
 import com.cool.todayheadline.fragments.SettingsFragment;
 
-import org.litepal.LitePal;
-
 public class MainActivity extends AppCompatActivity
 {
 
@@ -69,7 +67,6 @@ public class MainActivity extends AppCompatActivity
     public void findView()
     {
         mNavigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigationView = (NavigationView) findViewById(R.id.nav_view);
         mpager = (NoSlidingViewPaper) findViewById(R.id.vp_main_container);
     }
 
@@ -87,11 +84,6 @@ public class MainActivity extends AppCompatActivity
         mainActivityViewPagerAdapter.addFragment(new FavoriteFragment());
         mainActivityViewPagerAdapter.addFragment(new SettingsFragment());
         mpager.setAdapter(mainActivityViewPagerAdapter);
-
-        //加载SQLite数据库
-        LitePal.getDatabase();
-
-
     }
 
 

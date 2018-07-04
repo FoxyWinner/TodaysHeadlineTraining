@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +34,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     private static final String TAG = "MyNewsItemRecyclerViewA";
     private final Context mActivityContext;
 
-    private static int count1=0;
-    private static  int count2=0;
-
-    public MyNewsItemRecyclerViewAdapter(Context context,RecyclerView recyclerView,List<NewsItem> newsItemList)
+    public MyNewsItemRecyclerViewAdapter(Context context, RecyclerView recyclerView, List<NewsItem> newsItemList)
     {
         mActivityContext = context;
         this.recyclerView = recyclerView;
@@ -56,12 +54,9 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position)
     {
-
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
-        holder.mAuthorDateView.setText(mValues.get(position).getAuthor()+"\n"+mValues.get(position).getDate());
-
-
+        holder.mAuthorDateView.setText(mValues.get(position).getAuthor() + "\n" + mValues.get(position).getDate());
 
         //因为底层的原因，viewholder的重用机制和listview的重用机制并不一样，没想办法做到删除时图片停止刷新了
 
@@ -71,12 +66,10 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         holder.mImageView.setImageDrawable(loadingImg);
 
         //利用线程池执行方式执行，但线程池满之后仍然需要等待。
-//        new DownloadImageTask(holder.mImageView,mActivityContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mValues.get(position).getPic_url());
+        new DownloadImageTask(holder.mImageView, mActivityContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mValues.get(position).getPic_url());
 
         //默认顺序异步方式
-        new DownloadImageTask(holder.mImageView,mActivityContext).execute(mValues.get(position).getPic_url());
-
-
+//        new DownloadImageTask(holder.mImageView,mActivityContext).execute(mValues.get(position).getPic_url());
 
         //为整个item设置点击事件
 
@@ -89,7 +82,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                 Intent intent = new Intent();
                 intent.setClass(mActivityContext, NewsDetailActivity.class);
                 //传整个NewsItem对象进去
-                intent.putExtra(Const.PARAM_VO,holder.mItem);
+                intent.putExtra(Const.PARAM_VO, holder.mItem);
                 mActivityContext.startActivity(intent);
             }
         });
@@ -101,7 +94,7 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
             {
                 mValues.remove(position);
                 MyNewsItemRecyclerViewAdapter.this.notifyItemRemoved(position);
-                MyNewsItemRecyclerViewAdapter.this.notifyItemRangeChanged(0,MyNewsItemRecyclerViewAdapter.this.mValues.size());
+                MyNewsItemRecyclerViewAdapter.this.notifyItemRangeChanged(0, MyNewsItemRecyclerViewAdapter.this.mValues.size());
             }
         });
 
@@ -113,11 +106,11 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
                 NewsItem_table newsItem_table = AssemblerUtil.transformToPOJO(holder.mItem);
                 if (PreferenceNewsUtil.insertNews(newsItem_table))
                 {
-                    TSnackBarUtil.showTBar(recyclerView," 收藏成功");
+                    TSnackBarUtil.showTBar(recyclerView, " 收藏成功");
                 }
                 else
                 {
-                    TSnackBarUtil.showTBar(recyclerView," 收藏失败，请检查是否重复收藏");
+                    TSnackBarUtil.showTBar(recyclerView, " 收藏失败，请检查是否重复收藏");
                 }
                 holder.mView.smoothClose();
             }
@@ -149,14 +142,12 @@ public class MyNewsItemRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsIt
         {
             super(view);
             mView = (SwipeMenuLayout) view;
-            mLinearLayout = (LinearLayout)view.findViewById(R.id.news_item_ll);
+            mLinearLayout = (LinearLayout) view.findViewById(R.id.news_item_ll);
             mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
-            mImageView.setTag("");//默认设置mImageView没有加载
             mCancelButton = (Button) view.findViewById(R.id.news_item_cancel_bt);
             mCollectButton = (Button) view.findViewById(R.id.news_item_collect_bt);
         }
-
     }
 }

@@ -1,7 +1,6 @@
 package com.cool.todayheadline.utils;
 
 import android.os.Handler;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -15,9 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HttpThread {
-
-
+public class HttpThread
+{
     private final static int CONNECT_OUT_TIME = 5000;
     private String url;
     private String name;
@@ -27,81 +25,25 @@ public class HttpThread {
     private int id;
     private Handler handler;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
+
+    public HttpThread(String url, String name, String pwd, TextView response,
+                      Handler handler, int status, int id)
+    {
+        super();
+        this.url = url;
+        this.name = name;
+        this.pwd = pwd;
+        this.response = response;
+        this.handler = handler;
+        this.status = status;
         this.id = id;
     }
 
-    public HttpThread() {
-        super();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public TextView getResponse() {
-        return response;
-    }
-
-    public void setResponse(TextView response) {
-        this.response = response;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
-
-    public HttpThread(String url, String name, String pwd, TextView response,
-                      Handler handler  , int status , int id) {
-        super();
-        this.url = url;
-        this.name = name;
-        this.pwd = pwd;
-        this.response = response;
-        this.handler = handler;
-        this.status = status;
-        this.id = id ;
-
-    }
-    public void doPost() {
-
-        try {
+    public void doPost()
+    {
+        try
+        {
 
             URL httpUrl = new URL(url);
             // 第二步：根据URL对象，获取HttpURLConnection对象
@@ -113,7 +55,8 @@ public class HttpThread {
             connection.setDoInput(true);
 
             OutputStream out = connection.getOutputStream();
-            String content = "username=" + name + "&password=" + pwd;// 无论服务器转码与否，这里不需要转码，因为Android系统自动已经转码为utf-8啦
+            String content = "username=" + name + "&password=" + pwd;
+            // 无论服务器转码与否，这里不需要转码，因为Android系统自动已经转码为utf-8啦
             out.write(content.getBytes());
             out.flush();
             out.close();
@@ -122,7 +65,8 @@ public class HttpThread {
                     connection.getInputStream()));
             final StringBuffer buffer = new StringBuffer();
             String str = null;
-            while ((str = reader.readLine()) != null) {
+            while ((str = reader.readLine()) != null)
+            {
                 buffer.append(str);
             }
             reader.close();
@@ -132,41 +76,73 @@ public class HttpThread {
 
 
             JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-             id = jsonObject1.getInt("id");
-           Log.e("test!!!!!!",String.valueOf(id));
+            id = jsonObject1.getInt("id");
 
 
-
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-
-
-
-
-                   //response.setText(buffer.toString());
-                }
-            });
-
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
+        } catch (MalformedURLException e)
+        {
             e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        } catch (IOException e)
+        {
             e.printStackTrace();
-        }catch (JSONException e){
+        } catch (JSONException e)
+        {
             e.printStackTrace();
         }
 
 
     }
 
-
-    public void run() {
-
-            doPost();
+    public void run()
+    {
+        doPost();
     }
 
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    public void setUrl(String url)
+    {
+        this.url = url;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+
+    public TextView getResponse()
+    {
+        return response;
+    }
+
+    public void setResponse(TextView response)
+    {
+        this.response = response;
+    }
+
+    public int getStatus()
+    {
+        return status;
+    }
 
 }

@@ -22,69 +22,56 @@ import java.util.List;
 
 public class PreferenceActivity extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
-    private GridView    gridView;
-    private ImageAdapter    adapter;
-    private SharedPreferences sp;
+    private GridView gridView;
+    private ImageAdapter adapter;
+    private SharedPreferences sharedPreferences;
 
 
     //存放欢迎页传来的数据
     private List<NewsItem> newsItemList = new ArrayList<>();
 
-    private String[] names = {"shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"};
+    private String[] names = {"shehui", "guonei", "guoji", "yule", "tiyu", "junshi", "keji", "caijing", "shishang"};
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_preferences);
 
-        gridView =(GridView) findViewById(R.id.gridView);
-        adapter =new ImageAdapter(this);
+        gridView = (GridView) findViewById(R.id.gridView);
+        adapter = new ImageAdapter(this);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(PreferenceActivity.this);
 
 
-        ActionBar actionBar=getSupportActionBar();
-        if(actionBar!=null){
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+        {
             actionBar.hide();
         }
-
-
-
-
 
 
     }
 
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
 
+        sharedPreferences = getSharedPreferences(Const.SP_USER_PREFEREBCE, Context.MODE_PRIVATE);
 
-        Intent intent = new Intent(this,MainActivity.class);
-
-        sp = getSharedPreferences("SP", Context.MODE_PRIVATE);
-
-
-
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putString(Const.USER_PREFERENCE,names[position]);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString(Const.USER_PREFERENCE, names[position]);
 
         edit.commit();
-
-
 
         //无需开包，直接将预加载数据传给下一位
         intent.putExtras(getIntent().getExtras());
 
-
         startActivity(intent);
         finish();
     }
-
-
-
-
-
-
-    }
+}
 

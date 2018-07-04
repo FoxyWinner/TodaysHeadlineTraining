@@ -103,11 +103,5 @@ public class HomeFragment extends Fragment
     public void onDetach()
     {
         super.onDetach();
-//        mListener = null;
-    }
-
-    public interface OnListFragmentInteractionListener
-    {
-        void onListFragmentInteraction(NewsItem item);
     }
 }

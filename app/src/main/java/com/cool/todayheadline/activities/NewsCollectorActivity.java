@@ -43,7 +43,6 @@ public class NewsCollectorActivity extends AppCompatActivity{
             }
         });
 
-
         RecyclerView recyclerView = findViewById(R.id.list);
         //设置分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
@@ -53,7 +52,6 @@ public class NewsCollectorActivity extends AppCompatActivity{
         List<NewsItem_table> newsItem_tables= PreferenceNewsUtil.findAllNews(Const.USER_ID+"");
         List<NewsItem> newsItemList= AssemblerUtil.tableToNews(newsItem_tables);
         recyclerView.setAdapter(new MyCollectorItemRecyclerViewAdapter(context,recyclerView,newsItemList));
-
     }
 
     @Override

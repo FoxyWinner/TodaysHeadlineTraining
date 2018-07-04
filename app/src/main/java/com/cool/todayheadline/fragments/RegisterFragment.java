@@ -102,11 +102,6 @@ public class RegisterFragment extends Fragment {
                 HttpThread_Register httpThread = new HttpThread_Register(url,username, password,email, response, handler , status ,id);
                 httpThread.run();
                 status = httpThread.getStatus();
-
-                //new HttpThread(url,username, password, response, handler,status).run();
-
-                //  Log.e("flag的值是",String.valueOf(status));
-
                 if(status == 0){
                     Intent intent = new Intent(getActivity(),MainActivity.class);
 
@@ -118,8 +113,6 @@ public class RegisterFragment extends Fragment {
 
                     Toast.makeText(getActivity(),"用户名已存在",Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
         return view;

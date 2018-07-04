@@ -9,13 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cool.todayheadline.R;
-
-
-/**
- * 应用程序UI工具包：封装UI相关的一些操作
- * @author AA
- * @Date 2014-11-23
- */
 public class UIHelper
 {
 	
@@ -24,10 +17,9 @@ public class UIHelper
 	//单例模式
 
 	/**
-	 * 显示加载对话框
-	 * @param context 上下文
-	 * @param msg 对话框显示内容
-	 * @param cancelable 对话框是否可以取消
+	 * @param context
+	 * @param msg
+	 * @param cancelable
 	 */
 	public static void showDialogForLoading(Activity context, String msg, boolean cancelable)
 	{

@@ -33,9 +33,6 @@ public class MyCollectorItemRecyclerViewAdapter extends RecyclerView.Adapter<MyC
     private static final String TAG = "MyNewsItemRecyclerViewA";
     private final Context mActivityContext;
 
-    private static int count1=0;
-    private static  int count2=0;
-
     public MyCollectorItemRecyclerViewAdapter(Context context, RecyclerView recyclerView, List<NewsItem> newsItemList)
     {
         mActivityContext = context;
@@ -60,8 +57,6 @@ public class MyCollectorItemRecyclerViewAdapter extends RecyclerView.Adapter<MyC
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
         holder.mAuthorDateView.setText(mValues.get(position).getAuthor()+"\n"+mValues.get(position).getDate());
-
-
 
         //因为底层的原因，viewholder的重用机制和listview的重用机制并不一样，没想办法做到删除时图片停止刷新了
 
@@ -118,8 +113,6 @@ public class MyCollectorItemRecyclerViewAdapter extends RecyclerView.Adapter<MyC
         public final LinearLayout mLinearLayout;
         public final ImageView mImageView;
         public final Button mDeleteButton;
-
-
         public final TextView mTitleView;
         public final TextView mAuthorDateView;
 
@@ -133,9 +126,7 @@ public class MyCollectorItemRecyclerViewAdapter extends RecyclerView.Adapter<MyC
             mTitleView = (TextView) view.findViewById(R.id.news_item_title_tv);
             mAuthorDateView = (TextView) view.findViewById(R.id.news_item_author_date_tv);
             mImageView = (ImageView) view.findViewById(R.id.news_item_iv);
-            mImageView.setTag("");//默认设置mImageView没有加载
             mDeleteButton = (Button) view.findViewById(R.id.news_item_delete_collect_bt);
         }
-
     }
 }

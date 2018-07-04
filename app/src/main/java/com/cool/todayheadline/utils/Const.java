@@ -9,7 +9,7 @@ public class Const
     public static int USER_ID = 0;
 
 
-    public static String PARAM_URL = "NEWS_DETAIL_URL";
+    public static String SP_USER_PREFEREBCE = "SP_USER_PREFEREBCE";
     public static String PARAM_VO = "NEWS_DETAIL_VO";
     public static String NEWS_ITEM_LIST = "NEWS_ITEM_LIST";
 

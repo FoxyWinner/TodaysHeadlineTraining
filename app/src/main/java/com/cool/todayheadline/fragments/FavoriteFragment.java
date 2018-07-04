@@ -24,7 +24,7 @@ public class FavoriteFragment extends Fragment
 {
     private HomeFragment.OnListFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
-    private SharedPreferences sp;
+    private SharedPreferences sharedPreferences;
     private SwipeRefreshLayout refreshLayout;
 
     public FavoriteFragment()
@@ -45,9 +45,9 @@ public class FavoriteFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_newsitem_list, container, false);
 
-        sp = getActivity().getSharedPreferences("SP", Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(Const.SP_USER_PREFEREBCE, Context.MODE_PRIVATE);
 
-        String userPreference = sp.getString(Const.USER_PREFERENCE, "Null");
+        String userPreference = sharedPreferences.getString(Const.USER_PREFERENCE, "Null");
 
         Context context = view.getContext();
 

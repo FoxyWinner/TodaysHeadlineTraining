@@ -15,6 +15,8 @@ import com.cool.todayheadline.utils.Info;
 import com.cool.todayheadline.utils.PreDownloadTask;
 import com.cool.todayheadline.vo.NewsItem;
 
+import org.litepal.LitePal;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,9 @@ public class WelcomeActivity extends AppCompatActivity {
     }
     private void init()
     {
+        //加载SQLite数据库
+        LitePal.getDatabase();
+
         //判断是否是第一次进入
         SharedPreferences sf = getSharedPreferences("data", MODE_PRIVATE);
         boolean isFirstIn = sf.getBoolean("isFirstIn", true);

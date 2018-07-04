@@ -1,7 +1,6 @@
 package com.cool.todayheadline.utils;
 
 import android.os.Handler;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -15,9 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HttpThread_Register {
-
-
+public class HttpThread_Register
+{
     private final static int CONNECT_OUT_TIME = 5000;
     private String url;
     private String name;
@@ -144,44 +142,17 @@ public class HttpThread_Register {
             JSONObject jsonObject = new JSONObject(buffer.toString());
             status = jsonObject.getInt("status");
 
-
-//            JSONObject jsonObject1 = jsonObject.getJSONObject("data");
-//            id = jsonObject1.getInt("id");
-            Log.e("test!!!!!!",String.valueOf(status));
-
-
-
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    // TODO Auto-generated method stub
-
-
-
-
-                    //response.setText(buffer.toString());
-                }
-            });
-
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }catch (JSONException e){
             e.printStackTrace();
         }
-
-
     }
 
-
-    public void run() {
-
+    public void run()
+    {
         doPost();
     }
-
-
 }
