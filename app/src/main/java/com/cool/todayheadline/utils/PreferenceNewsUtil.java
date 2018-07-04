@@ -61,15 +61,12 @@ public class PreferenceNewsUtil {
         return list;
     }
 
-    public static Boolean cache_insertNews(Cache_NewsItem cacheNewsItem){
-        List<Cache_NewsItem> list=cache_findAllNews();
-        for(Cache_NewsItem news:list){
-            if(news.getId_String().equals(cacheNewsItem.getId_String())){
-                return false;
-            }
-        }
-        cacheNewsItem.save();
-        return true;
+    public static void cache_inserNews(List<Cache_NewsItem> cacheNewsItems){
+        LitePal.saveAll(cacheNewsItems);
+    }
+
+    public static void cache_deleteNewsById(int id){
+        LitePal.delete(Cache_NewsItem.class,id);
     }
 
     public static void cache_deleteAllNews(){
