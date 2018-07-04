@@ -6,11 +6,10 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.cool.todayheadline.Services.NewsNotificationService;
+import com.cool.todayheadline.services.NewsNotificationService;
 import com.cool.todayheadline.adapters.MyNewsItemRecyclerViewAdapter;
 import com.cool.todayheadline.bean.Cache_NewsItem;
 import com.cool.todayheadline.bean.Sys;
@@ -115,16 +114,13 @@ public class DownloadTask extends AsyncTask<String,Object,Sys>{
                 intent.putExtra("title",s.getResult().getData()[0].getTitle());
                 activity.startService(intent);
             }
-            //缓存新闻信息
 
-            long startTime = System.currentTimeMillis();
+
+            //缓存新闻信息
             List<Cache_NewsItem> cacheNewsItems=AssemblerUtil.NewsItemToCacheTable(newsItemList);
             for(Cache_NewsItem cacheNewsItem:cacheNewsItems){
                 PreferenceNewsUtil.cache_insertNews(cacheNewsItem);
             }
-            long endTime = System.currentTimeMillis();
-
-            Log.d(TAG, "onPostExecute: "+(endTime-startTime));
         }
         refreshLayout.setRefreshing(false);
     }

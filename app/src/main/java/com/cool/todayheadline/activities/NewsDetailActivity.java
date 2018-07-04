@@ -12,7 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cool.todayheadline.R;
-import com.cool.todayheadline.Services.NewsNotificationService;
+import com.cool.todayheadline.services.NewsNotificationService;
 import com.cool.todayheadline.bean.Cache_NewsItem;
 import com.cool.todayheadline.bean.NewsItem_table;
 import com.cool.todayheadline.utils.AssemblerUtil;

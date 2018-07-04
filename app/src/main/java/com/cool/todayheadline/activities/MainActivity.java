@@ -1,6 +1,5 @@
 package com.cool.todayheadline.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,7 +9,6 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import com.cool.todayheadline.R;
-import com.cool.todayheadline.Services.NewsNotificationService;
 import com.cool.todayheadline.extend.MainActivityViewPagerAdapter;
 import com.cool.todayheadline.extend.NoSlidingViewPaper;
 import com.cool.todayheadline.fragments.FavoriteFragment;

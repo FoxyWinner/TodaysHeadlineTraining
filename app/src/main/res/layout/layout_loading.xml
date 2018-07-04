@@ -12,8 +12,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             style="@style/AVLoadingIndicatorView"
-            android:visibility="visible"
-            app:indicatorColor="@color/colorPrimary"
+            app:indicatorColor="@color/bar_bg"
             app:indicatorName="BallSpinFadeLoaderIndicator"
 
             />
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="loading..."
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/bar_bg"
             android:textSize="25sp"
             />
 </GridLayout>
